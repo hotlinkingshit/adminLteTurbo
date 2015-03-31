@@ -1,0 +1,34 @@
+<?php
+/**
+ * AdminLte2 Callout
+ */
+/*
+namespace Admin;
+
+Class Callout
+{
+    private $type ='type';
+    private $title='title';
+    private $body ='body';
+
+    public function __construct ($type = '', $title = '', $body = '')
+    {
+        $this->type = $type;
+        $this->title = $title;
+        $this->body = $body;
+        //echo "Youpi !!";
+    }
+
+    public function __toString()
+    {
+        $HTML=[];
+        $HTML[]="<div class='callout callout-".$this->type."'>";
+        $HTML[]="<h4>".$this->title."</h4>";
+        if ($this->body) {
+            $HTML[]="<p>".$this->body."</p>";
+        }
+        $HTML[]="</div>";
+        return implode("\n", $HTML);
+    }
+}
+*/
