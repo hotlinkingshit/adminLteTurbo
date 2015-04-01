@@ -1,6 +1,6 @@
 {
 	"title":"AdminLte2 Turbo",
-	"skin":"skin-blue",
+	"skin":"skin-yellow",
 	"fixed-layout":false,
 	"boxed-layout":false,
 	"collapsed-sidebar":false,
@@ -21,14 +21,25 @@
 	    "plugins/fastclick/fastclick.min.js"
 	],
 	"menu":{
+		"header":{
+	   		"text":"Header",
+	   		"class":"header"
+	   },
 	   "home":{
 	      "text":"Home",
 	      "icon":"fa fa-home",
-	      "url":"../home"
+	      "url":"home.html"
 	   },
-	   "separator":{
-	   		"text":"Separator"
-	   	},
+	   "widgets":{
+	      "text":"Widgets",
+	      "icon":"fa fa-home",
+	      "url":"widgets.html"
+	   },
+	   "Modals":{
+	      "text":"Modals",
+	      "icon":"fa fa-home",
+	      "url":"modals.html"
+	   },
 	   "users":{  
 	      "text":"Users",
 	      "icon":"fa fa-users",
@@ -44,7 +55,10 @@
 	      }
 	      ]
 	   },
-
+		"separator":{
+	   		"text":"Separator",
+	   		"class":"header"
+	   },
 	   "logout":{
 	      "text":"Logout",
 	      "icon":"fa fa-sign-out",

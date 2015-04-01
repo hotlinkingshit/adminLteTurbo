@@ -374,11 +374,16 @@ class AdminLte2
                 $HTML[]='</ul>';
                 $HTML[]='</li>'; 
             }else{
-                $HTML[]='<li>';
                 if(!isset($o->url))$o->url='#';
                 if(!isset($o->icon))$o->icon='';
-                $HTML[]='<a href="'.$o->url.'"><i class="'.$o->icon.'"></i> <span>'.$o->text.'</span></a>';
-                $HTML[]='</li>';
+                if(isset($o->class)){
+                    $HTML[]='<li class="'.$o->class.'">'.$o->text.'</li>';
+                }else{
+                    $HTML[]='<li>';
+                    $HTML[]='<a href="'.$o->url.'"><i class="'.$o->icon.'"></i> <span>'.$o->text.'</span></a>';
+                    $HTML[]='</li>';
+                }
+                
             }
         }
         $HTML[]='</ul>';
