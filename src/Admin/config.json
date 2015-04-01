@@ -16,9 +16,7 @@
 	    "plugins/jQuery/jQuery-2.1.3.min.js",
     	"bootstrap/js/bootstrap.min.js",
     	"dist/js/app.min.js",
-    	"dist/js/demo.js",
-    	"plugins/slimScroll/jquery.slimscroll.min.js",
-	    "plugins/fastclick/fastclick.min.js"
+    	"dist/js/demo.js"
 	],
 	"menu":{
 		"header":{
@@ -28,33 +26,25 @@
 	   "home":{
 	      "text":"Home",
 	      "icon":"fa fa-home",
-	      "url":"home.html"
+	      "url":"index.php"
 	   },
-	   "widgets":{
-	      "text":"Widgets",
-	      "icon":"fa fa-home",
-	      "url":"widgets.html"
-	   },
-	   "Modals":{
-	      "text":"Modals",
-	      "icon":"fa fa-home",
-	      "url":"modals.html"
-	   },
-	   "users":{  
-	      "text":"Users",
+	   
+	   "examples":{  
+	      "text":"Examples",
 	      "icon":"fa fa-users",
 	      "sub":[{  
-	        "text":"Search",
-	        "icon":"fa fa-user",
-	        "url":"../users"
+			"text":"Modals",
+	      	"icon":"fa fa-home",
+	      	"url":"modals.php"
 	      },
 	      {  
-	        "text":"Import",
-	        "icon":"fa fa-upload",
-	        "url":"../user_import"
+	      	"text":"Widgets",
+	      	"icon":"fa fa-home",
+	      	"url":"widgets.php"
 	      }
 	      ]
 	   },
+		
 		"separator":{
 	   		"text":"Separator",
 	   		"class":"header"
@@ -62,7 +52,7 @@
 	   "logout":{
 	      "text":"Logout",
 	      "icon":"fa fa-sign-out",
-	      "url":"../login/logout.php"
+	      "url":"logout.php"
 	   }
 	}
 }
