@@ -227,6 +227,7 @@ class AdminLte2
         if (!$title) {
             $title="Admin";
         }
+
         //$HTML[]='<a href="?" class="logo">';
         //$HTML[]="<a href=? class=logo><img src='".$this->path."/img/logosocgen.png' width=180></i></a>";
         $HTML[]="<a href=? class=logo>$title</a>";
@@ -234,46 +235,6 @@ class AdminLte2
     
         // Header Navbar: style can be found in header.less -->
         $HTML[]='<nav class="navbar navbar-static-top" role="navigation">';
-        // Sidebar toggle button-->
-        /*
-        $HTML[]='<a href="#" class="navbar-btn sidebar-toggle" data-toggle="offcanvas" role="button" title="Toggle navigation">';
-        $HTML[]='<span class="sr-only">Toggle navigation</span>';
-        $HTML[]='<span class="icon-bar"></span>';
-        $HTML[]='<span class="icon-bar"></span>';
-        $HTML[]='<span class="icon-bar"></span>';
-        $HTML[]='</a>';
-        */
-        //if ($this->session) {
-            /*
-            //Navbar right
-            $HTML[]='<div class="navbar-right">';
-            $HTML[]='<ul class="nav navbar-nav">';
-
-            // User name
-            $HTML[]='<li class="dropdown user user-menu">';
-            $HTML[]='<a href="#" class="dropdown-toggle" data-toggle="dropdown">';
-            $HTML[]='<i class="glyphicon glyphicon-user"></i>';
-            $HTML[]='<span>'.'Username'.' <i class="caret"></i></span>';
-            $HTML[]='</a>';
-
-
-            $HTML[]='<ul class="dropdown-menu">';
-
-            // User image -->
-            $HTML[]='<li class="user-header bg-light-blue">';
-            //$HTML[]='<img src="../../img/avatar3.png" class="img-circle" alt="User Image">';
-            //$HTML[]='<p>'.$this->user['username'].'</p>';//<small>Member since Nov. 2012</small>
-            $HTML[]='<p><a href=../login/logout.php>Logout</a></p>';
-
-            $HTML[]='</li>';
-            $HTML[]='</ul>';
-
-            $HTML[]='</ul>';
-            $HTML[]='</div>';
-            */
-        //}
-
-
         $HTML[]='</nav>';
         $HTML[]='</header>';
 
@@ -339,7 +300,7 @@ class AdminLte2
 
         // sidebar menu: : style can be found in sidebar.less -->
         //$HTML[]= $this->menu();
-        $HTML[]= $this->menujson("../menu.json");
+        $HTML[]= $this->menu();
 
         $HTML[]='</section>';
         $HTML[]='</aside>';
@@ -348,18 +309,25 @@ class AdminLte2
 
 
 
-    public function menujson()
+    public function menu()
     {
         $menu=$this->config->menu;
         //print_r($menu);
         $HTML=[];
         $HTML[]='<ul class="sidebar-menu">';
         foreach($menu as $name=>$o){
-            if(isset($o->sub)){
+            
+            //$id=$class=$url=$icon=$text=$target='';
+            
+            //if(isset($o->class))$class=$o->class;
+            //if(isset($o->target))$target=$o->target;
+            
+            if(isset($o->sub))
+            {
                 $HTML[]='<li class="treeview">';
-                if(!isset($o->url))$o->url='#';
+                //if(!isset($o->url))$o->url='#';
                 if(!isset($o->icon))$o->icon='';
-                $HTML[]='<a href="'.$o->url.'">';
+                $HTML[]='<a href="'.@$o->url.'">';
                 $HTML[]='<i class="'.$o->icon.'"></i> <span>'.$o->text.'</span>';
                 $HTML[]='<i class="fa fa-angle-left pull-right"></i>';
                 $HTML[]='</a>';
@@ -373,16 +341,24 @@ class AdminLte2
                 }
                 $HTML[]='</ul>';
                 $HTML[]='</li>'; 
-            }else{
-                if(!isset($o->url))$o->url='#';
+            } else {
+                
+                //if(!isset($o->url))$o->url='#';
                 if(!isset($o->icon))$o->icon='';
+                
                 if(isset($o->class)){
-                    $HTML[]='<li class="'.$o->class.'">'.$o->text.'</li>';
+                    $HTML[]='<li class="'.$o->class.'">';    
                 }else{
-                    $HTML[]='<li>';
-                    $HTML[]='<a href="'.$o->url.'"><i class="'.$o->icon.'"></i> <span>'.$o->text.'</span></a>';
-                    $HTML[]='</li>';
+                    $HTML[]='<li>';    
                 }
+                
+                if(isset($o->url))$HTML[]='<a href="'.$this->path.$o->url.'">';
+                
+                $HTML[]='<i class="'.$o->icon.'"></i> <span>'.$o->text.'</span>';
+                //$HTML[]='<small class="label pull-right bg-green">new</small>';//small
+                if(isset($o->url))$HTML[]='</a>';
+                
+                $HTML[]='</li>';
                 
             }
         }
@@ -390,10 +366,8 @@ class AdminLte2
         return implode("\n", $HTML); 
     }
 
-    //scripts
-
     /**
-    * @brief the list of admin scripts to be included
+    * @brief the list of js scripts to be included
     * @returns html
     */
     public function scripts()

@@ -7,8 +7,8 @@
 	"favicon":"favicon.ico",
 	"css":[
 		"bootstrap/css/bootstrap.min.css",
-    	"https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css",
-	    "http://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css",
+    	"dist/css/font-awesome/4.3.0/font-awesome.min.css",
+	    "dist/css/ionicons/2.0.0/ionicons.min.css",
     	"dist/css/AdminLTE.min.css",
     	"dist/css/skins/_all-skins.min.css"
 	],
@@ -26,31 +26,49 @@
 	   "home":{
 	      "text":"Home",
 	      "icon":"fa fa-home",
-	      "url":"index.php"
+	      "url":"./home"
 	   },
 	   
 	   "examples":{  
 	      "text":"Examples",
 	      "icon":"fa fa-users",
 	      "sub":[{  
+			"text":"Boxes",
+	      	"icon":"fa fa-list-alt",
+	      	"url":"boxes.php"
+	      },{  
+			"text":"Alerts",
+	      	"icon":"fa fa-warning",
+	      	"url":"alerts.php"
+	      },{  
 			"text":"Modals",
-	      	"icon":"fa fa-home",
+	      	"icon":"fa fa-exclamation-circle",
 	      	"url":"modals.php"
-	      },
-	      {  
+	      },{  
 	      	"text":"Widgets",
 	      	"icon":"fa fa-home",
 	      	"url":"widgets.php"
+	      },{  
+	      	"text":"Icons",
+	      	"icon":"fa fa-flag",
+	      	"url":"icons.php"
 	      }
+
 	      ]
 	   },
-		
+		"youtube":{
+			"text":"Youtube",
+			"icon":"fa fa-youtube-play",
+			"url":"https://www.youtube.com/watch?v=O0t9mTNbQco",
+			"target":"_blank"
+		},
 		"separator":{
 	   		"text":"Separator",
 	   		"class":"header"
 	   },
-	   "logout":{
+	   "logout":{	      
 	      "text":"Logout",
+	      "id":"btn_logout",
 	      "icon":"fa fa-sign-out",
 	      "url":"logout.php"
 	   }

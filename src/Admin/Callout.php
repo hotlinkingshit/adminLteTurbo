@@ -2,12 +2,12 @@
 /**
  * AdminLte2 Callout
  */
-/*
+
 namespace Admin;
 
 Class Callout
 {
-    private $type ='type';
+    private $type ='default';
     private $title='title';
     private $body ='body';
 
@@ -19,7 +19,7 @@ Class Callout
         //echo "Youpi !!";
     }
 
-    public function __toString()
+    public function html()
     {
         $HTML=[];
         $HTML[]="<div class='callout callout-".$this->type."'>";
@@ -30,5 +30,9 @@ Class Callout
         $HTML[]="</div>";
         return implode("\n", $HTML);
     }
+
+    public function __toString()
+    {
+        return $this->html();
+    }
 }
-*/
