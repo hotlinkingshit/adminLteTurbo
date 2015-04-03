@@ -17,13 +17,10 @@ class AdminLte2
      * Static path to assets
      * @var string
      */
-    private $path = '';// static path
-    
-    /**
-     * Admin title (display at top-left)
-     * @var string
-     */    
-    private $config = null;//admin config from file
+    private $path='';// static path
+    private $config=[];//admin config from json file
+    private $title= 'AdminLte Turbo';// document title
+    private $DEBUG=false;
 
     /**
      * AdminLte Constructor
@@ -53,7 +50,9 @@ class AdminLte2
                 
             }
         }else{
-            die("<li>menu error : config file not found.".realpath("."));
+            //die("<li>Error : config.json file not found in ".realpath("."));
+            throw new \Exception("Error : config.json file not found in ".realpath("."), 1);
+            
         }
     }
 
@@ -149,28 +148,12 @@ class AdminLte2
     }
 
     /**
-     * Obsolete
-     * Function to call in controllers, to make sure the user is logged in.
-     * @return [type] [description]
-     */
-    public function ctrl()
-    {
-        die("TODO : Fix me in ".__FILE__);
-        return true;
-    }
-
-
-    /**
      * head
      * bring the headers, and initial assets
      * @return [type] [description]
      */
     public function head()
     {
-        // Assets
-        $CSS=$this->config->css;
-
-        // html
         $HTML=[];
         $HTML[]='<!DOCTYPE html>';
         $HTML[]='<html lang="en">';
@@ -178,13 +161,21 @@ class AdminLte2
         $HTML[]='<meta charset="UTF-8">';
         $HTML[]="<title>".$this->title."</title>";
         $HTML[]="<meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>";
-        $HTML[]="<link rel='shortcut icon' href='".$this->path."img/favicon.png' type='image/png' />";
-        foreach ($CSS as $v) {
-            if(preg_match("/^http/i",$v)){
-                $HTML[]='<link href="'.$v.'" rel="stylesheet" type="text/css" />';    
-            }else{
-                $HTML[]='<link href="'.$this->path.$v.'" rel="stylesheet" type="text/css" />';    
-            }            
+        //$HTML[]="<link rel='shortcut icon' href='".$this->path."img/favicon.png' type='image/png' />";
+        if($this->config->favicon){
+            $HTML[]='<link rel="shortcut icon" href="'.$this->path.$this->config->favicon.'">';    
+        }
+        
+
+        // Assets
+        if(isset($this->config->css)){
+            foreach ($this->config->css as $v) {
+                if(preg_match("/^http/i",$v)){
+                    $HTML[]='<link href="'.$v.'" rel="stylesheet" type="text/css" />';    
+                }else{
+                    $HTML[]='<link href="'.$this->path.$v.'" rel="stylesheet" type="text/css" />';    
+                }            
+            }
         }
         $HTML[]="</head>";
         return implode("\n", $HTML);
@@ -202,10 +193,8 @@ class AdminLte2
         //todo, read it from the config file
         $skin='skin-blue';
         $HTML[]="<body class='$skin'>";
-
         return implode("\n", $HTML);
     }
-
 
 
     /**
@@ -221,11 +210,10 @@ class AdminLte2
         // header logo: style can be found in header.less -->
         $HTML[]='<header class="main-header">';
 
-        // Add the class icon to your logo image or logo icon to add the margining -->
-        //$HTML[]='Admin';
-        $title=$this->config->title;
-        if (!$title) {
-            $title="Admin";
+        
+        $title="Admin";
+        if (isset($this->config->title)) {
+            $title=$this->config->title;
         }
 
         //$HTML[]='<a href="?" class="logo">';
@@ -308,19 +296,29 @@ class AdminLte2
     }
 
 
-
+    /**
+     * Return left menu
+     * @return string html
+     */
     public function menu()
     {
-        $menu=$this->config->menu;
-        //print_r($menu);
         $HTML=[];
+        
+        
+        if(!isset($this->config->menu)){
+            return '';
+        }
+        
+        
+        
         $HTML[]='<ul class="sidebar-menu">';
-        foreach($menu as $name=>$o){
+
+        // debug
+        $HTML[]='<li class="header">this->path : '.$this->path.'</li>';    
+        
+        foreach($this->config->menu as $name=>$o){
             
-            //$id=$class=$url=$icon=$text=$target='';
             
-            //if(isset($o->class))$class=$o->class;
-            //if(isset($o->target))$target=$o->target;
             
             if(isset($o->sub))
             {
@@ -372,6 +370,10 @@ class AdminLte2
     */
     public function scripts()
     {
+        if(!isset($this->config->js)){
+            return '';
+        }
+
         $HTML=[];
         foreach ($this->config->js as $k => $js) {
             if (preg_match("/^http/", $js)) {
