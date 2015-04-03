@@ -167,7 +167,7 @@ class AdminLte2
         }
         
 
-        // Assets
+        // Css
         if(isset($this->config->css)){
             foreach ($this->config->css as $v) {
                 if(preg_match("/^http/i",$v)){
@@ -278,13 +278,14 @@ class AdminLte2
 
 
         // search field /
-        $HTML[]='<div class="sidebar-form input-group">';
-        $HTML[]='<input type="text" name="q" class="form-control" placeholder="Search ...">';
-        $HTML[]='<span class="input-group-btn">';
-        $HTML[]='<button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>';
-        $HTML[]='</span>';
-        $HTML[]='</div>';
-
+        if(isset($this->config->menusearch) && $this->config->menusearch){
+            $HTML[]='<div class="sidebar-form input-group">';
+            $HTML[]='<input type="text" id="q" name="q" class="form-control" placeholder="Search ...">';
+            $HTML[]='<span class="input-group-btn">';
+            $HTML[]='<button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>';
+            $HTML[]='</span>';
+            $HTML[]='</div>';
+        }
 
         // sidebar menu: : style can be found in sidebar.less -->
         //$HTML[]= $this->menu();
@@ -304,12 +305,9 @@ class AdminLte2
     {
         $HTML=[];
         
-        
         if(!isset($this->config->menu)){
             return '';
         }
-        
-        
         
         $HTML[]='<ul class="sidebar-menu">';
 
@@ -318,11 +316,14 @@ class AdminLte2
         
         foreach($this->config->menu as $name=>$o){
             
+            $title='';
+            $class='';
             
+            if(isset($o->title))$title='title="'.$o->title.'"';
             
             if(isset($o->sub))
             {
-                $HTML[]='<li class="treeview">';
+                $HTML[]='<li class="treeview" '.$title.'>';
                 //if(!isset($o->url))$o->url='#';
                 if(!isset($o->icon))$o->icon='';
                 $HTML[]='<a href="'.@$o->url.'">';
@@ -339,20 +340,24 @@ class AdminLte2
                 }
                 $HTML[]='</ul>';
                 $HTML[]='</li>'; 
-            } else {
+            }
+            else
+            {
+                $HTML[]='<li '.$title.'>';
                 
-                //if(!isset($o->url))$o->url='#';
-                if(!isset($o->icon))$o->icon='';
-                
+                //if(!isset($o->icon))$o->icon='';
+                /*
                 if(isset($o->class)){
                     $HTML[]='<li class="'.$o->class.'">';    
                 }else{
-                    $HTML[]='<li>';    
+                        
                 }
-                
+                */
                 if(isset($o->url))$HTML[]='<a href="'.$this->path.$o->url.'">';
                 
-                $HTML[]='<i class="'.$o->icon.'"></i> <span>'.$o->text.'</span>';
+                if(isset($o->icon))$HTML[]='<i class="'.$o->icon.'"></i> ';
+                $HTML[]='<span>'.$o->text.'</span>';
+                
                 //$HTML[]='<small class="label pull-right bg-green">new</small>';//small
                 if(isset($o->url))$HTML[]='</a>';
                 
