@@ -22,13 +22,35 @@ echo $admin->printPublic();//
 <section class="content">
   <div class="row">
     <div class="col-md-6 col-sm-6 col-xs-12" >
+
+      https://almsaeedstudio.com/themes/AdminLTE/pages/UI/general.html
+      
+      <hr />
+
+      <div class="alert alert-danger alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+        Danger alert preview. This alert is dismissable. Lorem lipsum.
+      </div>
+
+
       <?php
+      echo new Admin\Alert("danger","Test","Body ??");
+      /*
+      $box=new Admin\Box;
+      $box->title("Alerts");
+      $box->icon("fa fa-warning");
+      $box->type("danger");
+      $box->id("box");
+      echo $box->html("Box body","<button class='btn btn-default'>Button</button>");
+
       $box=new Admin\Box;
       $box->title("Alerts");
       $box->icon("fa fa-warning");
       //$box->type("default");
       $box->id("box");
       echo $box->html("Box body","<button class='btn btn-default'>Button</button>");
+      */
       ?>
 <pre>
 $box=new Admin\Box;
