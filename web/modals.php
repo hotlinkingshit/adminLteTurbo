@@ -22,6 +22,7 @@ echo $admin->html();//
 <section class="content">
 <?php
 $modal = new Admin\Modal("Titre de la fenetre modal","Body building","Foot locker");
+$modal->id("modalwindow");
 $modal->icon("fa fa-user");
 echo $modal;
 ?>
@@ -29,6 +30,6 @@ echo $modal;
 
 <script>
 $(function(){
-  $(".modal").modal(true);
+  $("#modalwindow").modal(true);
 });
 </script>
