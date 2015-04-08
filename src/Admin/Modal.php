@@ -1,6 +1,9 @@
 <?php
 /**
  * AdminLte2 Modal
+ * to pop the modal -> $("#modalwindow").modal(true);
+ * to update the title -> $("#modalwindow .modal-title").html('html');
+ * to update the body -> $("#modalwindow .modal-body").html('html');
  */
 
 /*
@@ -27,6 +30,7 @@ namespace Admin;
 
 Class Modal
 {
+    private $id ='';
     private $type ='default';
     private $icon ='';
     private $title='title';
@@ -35,13 +39,17 @@ Class Modal
 
     public function __construct ($title = '', $body = '', $footer='')
     {
-        //$this->type = $type;
+        $this->id = md5(rand(0,time()));
         $this->title = $title;
         $this->body = $body;
         $this->footer = $footer;
         //echo "Youpi !!";
     }
 
+    public function id($str = ''){
+        $this->id=$str;
+    }
+    
     public function icon($str = ''){
         $this->icon=$str;
     }
@@ -49,16 +57,8 @@ Class Modal
     public function html()
     {
         $HTML=[];
-        /*
-        $HTML[]="<div class='callout callout-".$this->type."'>";
-        $HTML[]="<h4>".$this->title."</h4>";
-        if ($this->body) {
-            $HTML[]="<p>".$this->body."</p>";
-        }
-        $HTML[]="</div>";
-        */
         
-        $HTML[]='<div class="modal">';
+        $HTML[]='<div class="modal" id="'.$this->id.'">';
         $HTML[]='<div class="modal-dialog">';
         $HTML[]='<div class="modal-content">';
         
