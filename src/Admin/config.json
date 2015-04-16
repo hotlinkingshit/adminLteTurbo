@@ -1,6 +1,6 @@
 {
 	"title":"AdminLte2 Turbo",
-	"skin":"skin-yellow",
+	"homeurl":"index.php",
 	"favicon":"favicon.ico",
 	"menusearch":true,
 	"css":[
@@ -13,14 +13,26 @@
 	"js":[
 	    "plugins/jQuery/jQuery-2.1.3.min.js",
     	"bootstrap/js/bootstrap.min.js",
-    	"dist/js/app.min.js",
-    	"dist/js/demo.js"
+    	"dist/js/app.min.js"
 	],
+	"layout":{
+		"skin":"skin-yellow",
+		"fixed":false,
+		"boxed":false,
+		"collapsed":false
+	},
 	"menu":{
 		"header":{
 	   		"text":"Header",
 	   		"class":"header"
 	   },
+	   
+	   "login":{
+	      "text":"Login",
+	      "icon":"fa fa-sign-in",
+	      "url":"login.php"
+	   },
+
 	   "home":{
 	      "text":"Home",
 	      "title":"Sweet home",

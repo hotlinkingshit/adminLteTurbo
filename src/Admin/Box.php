@@ -17,9 +17,9 @@ class Box
     private $iconUrl='';
     private $color='';
     private $style='';
-    private $title='Box';
-    private $small='...';//
-    private $body='';
+    private $title='box-title';
+    private $small='';//
+    private $body='box-body';
     private $body_padding=true;//box-body no-padding
     private $footer='';
     private $collapsed=false;

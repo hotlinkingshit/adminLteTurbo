@@ -35,7 +35,7 @@ Class Modal
     private $icon ='';
     private $title='title';
     private $body ='';
-    private $footer ='';
+    private $footer ='<button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>';
 
     public function __construct ($title = '', $body = '', $footer='')
     {
@@ -72,8 +72,9 @@ Class Modal
         $HTML[]='<div class="modal-body">'.$this->body.'</div>';
         
         $HTML[]='<div class="modal-footer">';
-          $HTML[]='<button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>';
+          //$HTML[]='<button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>';
           //$HTML[]='<button type="button" class="btn btn-primary">Save changes</button>';
+          $HTML[]=$this->footer;
         $HTML[]='</div>';
         
         $HTML[]='</div>';//<!-- /.modal-content -->

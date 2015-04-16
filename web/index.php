@@ -7,7 +7,7 @@ require __DIR__."/../vendor/autoload.php";
 
 $admin = new Admin\AdminLte2();
 $admin->title("Home");
-echo $admin->html();//
+echo $admin;//
 ?>
 <section class="content-header">
   <h1>

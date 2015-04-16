@@ -96,7 +96,12 @@ class AdminLte2
         return implode("",$html);
     }
 
+    public function __toString()
+    {
+        return $this->html();
+    }
 
+    
     /**
      * Print all admin html data
      * @return [type] [description]
@@ -112,40 +117,7 @@ class AdminLte2
         return;
     }
 
-    /**
-     * Print all admin html data
-     * @return [type] [description]
-     */
-    
-    public function printPrivate($return = false)
-    {
-        echo $this->head();
-        echo $this->body();
-        echo $this->header();
-        echo $this->leftside();
-        echo $this->scripts();
-        //echo $this->autoreload();// reload page every 15 minutes
-        echo '<aside class="right-side">';
-        /*
-        if (!$this->session || !$this->user['is_superuser']) {
-            //echo "<li>Please login";
-            echo "<div class='box-body'>";
-            echo "<section class=content>";
-            echo "<pre>You are not logged in.<br /><a href='".$this->path."/login/'>Please login</a></pre>";
-            echo "</div>";
-            //print_r($this->session, true);
-            exit;
-        }
-        */
-        return;
-    }
 
-    public function printPage(){
-        echo $this->head();
-        echo $this->body();
-        echo $this->scripts();
-        return;
-    }
 
     /**
      * head
@@ -366,7 +338,7 @@ class AdminLte2
             }
         }
         $HTML[]='</ul>';
-        return implode("\n", $HTML); 
+        return implode('', $HTML); 
     }
 
     /**

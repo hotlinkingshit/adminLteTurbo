@@ -6,7 +6,7 @@ require __DIR__."/../vendor/autoload.php";
 
 $admin = new Admin\AdminLte2();
 $admin->title("Modals");
-echo $admin->html();//
+echo $admin;//
 ?>
 <section class="content-header">
   <h1>
@@ -20,6 +20,30 @@ echo $admin->html();//
 </section>
 
 <section class="content">
+
+<div class='row'>
+	<div class='col-md-6'>
+	<?php
+	$box=new Admin\Box;
+	$box->icon('fa fa-code');
+	$box->title('PHP');
+	$box->body('<pre>test</pre>');
+	echo $box;
+	?>
+	</div>
+	<div class='col-md-6'>
+	<?php
+	$box=new Admin\Box;
+	$box->icon('fa fa-code');
+	$box->title('Javascript');
+	//$box->body();
+	//$box->footer();
+	echo $box->html('<pre>test</pre>','<a href=# class="btn btn-default">myModal.show()</a>');
+	?>	
+	</div>
+</div>
+
+
 <?php
 $modal = new Admin\Modal("Titre de la fenetre modal","Body building","Foot locker");
 $modal->id("modalwindow");

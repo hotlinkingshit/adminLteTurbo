@@ -9,4 +9,11 @@ $admin->title("Logout");
 echo $admin->html();//
 ?>
 
-Logout...
+<section class='content'>
+
+<h1>Bye !</h1>
+<script>
+$(function(){
+	$("body").toggleClass('sidebar-collapse');
+});
+</script>
