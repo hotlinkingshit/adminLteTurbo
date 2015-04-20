@@ -56,18 +56,30 @@ class AdminLte2
         }
     }
 
+    // Get/Set config
+    public function config($config=[])
+    {
+        if($config){
+            $this->config=$config;
+        }
+        return $this->config;
+    }
+
     /**
-     * Set app base path
+     * Set app base path, what for ?
      * @param  string $path [description]
      * @return [type]       [description]
      */
+    /*
     public function path($path = '')
     {
         $this->path=$path;
         //echo "<li>".$this->path;
-        return true;
+        return $this->path;
     }
-  
+    */
+   
+
     /**
      * Set page title
      * @param  string $title [description]
@@ -78,6 +90,9 @@ class AdminLte2
         $this->title = $title;
         return $this->title;
     }
+
+
+
 
 
     /**
@@ -195,6 +210,20 @@ class AdminLte2
     
         // Header Navbar: style can be found in header.less -->
         $HTML[]='<nav class="navbar navbar-static-top" role="navigation">';
+        
+        // Sidebar toggle button
+        $HTML[]='<a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">';
+        $HTML[]='<span class="sr-only">Toggle navigation</span>';
+        $HTML[]='</a>';
+    
+        // Navbar right menu    
+        $HTML[]='<div class="navbar-custom-menu">';
+
+        $HTML[]='test';
+        
+        $HTML[]='</div>';
+
+
         $HTML[]='</nav>';
         $HTML[]='</header>';
 
@@ -240,11 +269,10 @@ class AdminLte2
             $HTML[]='<img src="'.$this->path.'img/avatar5.png" class="img-circle" alt="User Image" />';
             $HTML[]='</div>';
             */
-            $HTML[]='<div class="pull-left info">';
-            $userName="Toto";
-            $HTML[]='<p>Hello, '.$userName.'</p>';
+            //$HTML[]='<div class="pull-left info">';
+            //$HTML[]='<p>Hello, '.$userName.'</p>';
             //$HTML[]='<a href="#"><i class="fa fa-circle text-success"></i> Online</a>';
-            $HTML[]='</div>';
+            //$HTML[]='</div>';
             $HTML[]='</div>';
         }
 
@@ -273,24 +301,33 @@ class AdminLte2
      * Return left menu
      * @return string html
      */
-    public function menu()
+    public function menu($json = '')
     {
-        $HTML=[];
         
-        if(!isset($this->config->menu)){
+        $menu=$this->config->menu;
+        
+        //echo "<li>".count($menu);
+        //var_dump(count($this->config->menu));exit;
+        
+        //var_dump($this->config->menu);exit;
+        
+
+        if(!isset($menu)||!is_object($menu)){
             return '';
         }
-        
+
+        $HTML=[];
         $HTML[]='<ul class="sidebar-menu">';
 
         // debug
-        $HTML[]='<li class="header">this->path : '.$this->path.'</li>';    
+        //$HTML[]='<li class="header">this->path : '.$this->path.'</li>';    
         
-        foreach($this->config->menu as $name=>$o){
+        foreach(@$menu as $name=>$o){
             
             $title='';
             $class='';
             
+            if(isset($o->class))$class='class="'.$o->class.'"';
             if(isset($o->title))$title='title="'.$o->title.'"';
             
             if(isset($o->sub))
@@ -315,7 +352,8 @@ class AdminLte2
             }
             else
             {
-                $HTML[]='<li '.$title.'>';
+                
+                $HTML[]='<li '.$class.' '.$title.'>';
                 
                 //if(!isset($o->icon))$o->icon='';
                 /*
