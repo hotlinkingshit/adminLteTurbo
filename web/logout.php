@@ -6,6 +6,8 @@ require __DIR__."/../vendor/autoload.php";
 
 $admin = new Admin\AdminLte2();
 $admin->title("Logout");
+$admin->config()->menu=false;
+
 echo $admin->html();//
 ?>
 
