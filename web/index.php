@@ -26,12 +26,16 @@ echo $admin;//
     <?php
     $box= new Admin\Box;
     $box->icon("fa fa-question");
+    $box->type("warning");
     $box->title("About");
+    $box->removable(true);
+    
     $body=[];
     $body[]="AdminLteTurbo is a php classed, striped down version of <a href='https://almsaeedstudio.com/'>Almaseed AdminLTE2</a><br />";
     $body[]="The goal is to help develop web/php apps super quickly, with little dependencies.<br />";
     $body[]="Plugins have been removed and only the required dependencies (Bootstap and jQuery) are left.<br />";
     $box->body($body);
+    $box->footer("<a href='config.php' class='btn btn-default'>Configuration</a>");
     
     echo $box;
     ?>
