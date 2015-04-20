@@ -24,21 +24,46 @@ echo $admin->printPublic();//
   <div class="row">
     <div class="col-md-6 col-sm-6 col-xs-12" >
       <?php
-      $box=new Admin\Box;
-      $box->title("box title");
-      $box->icon("fa fa-user");
-      //$box->type("default");
-      $box->id("mybox");
-      echo $box->html("Box body","<button class='btn btn-default'>Button</button>");
+      
+      $types=['default','warning','danger','info','success'];
+      
+      foreach($types as $type)
+      {
+        $box=new Admin\Box;
+        $box->title("Box type '$type'");
+        //$box->icon("fa fa-user");
+        $box->type($type);
+        $box->id("box-$type");
+        $box->removable(true);
+        
+        //$box->loading(true);
+        echo $box->html("Box body","<button class='btn btn-default'>Ok</button>");  
+      }
+      
       ?>
-<pre>
-&lt;?php
-$box=new Admin\Box;
-$box->title("box title");
-$box->id("mybox");
-echo $box->html("Box body","&lt;button class='btn btn-default'>Button&lt;/button>");
-</pre>
+    </div>   <!-- /.row -->
+    
+    <div class="col-md-6 col-sm-6 col-xs-12" >
+    <?php
+    $box=new Admin\Box;
+    $box->icon("fa fa-code");
+    $box->title("Php");
+    $box->collapsable(true);
+    $htm=[];
+    $htm[]='<pre>'."\n";
+    $htm[]='&lt;?php'."\n";
+    $htm[]='$box=new Admin\Box;'."\n";
+    $htm[]='$box->title("box title");'."\n";
+    $htm[]='$box->type("default");'."\n";
+    $htm[]='$box->id("mybox");'."\n";
+    $htm[]='$box->collapsabe(true);'."\n";
+    $htm[]='$box->removable(false);'."\n";
+    $htm[]='echo $box'."\n";
+    $htm[]='</pre>';
+    echo $box->html($htm,"<button class='btn btn-default'>Ok</button>");  
+    ?>
 
     </div>   <!-- /.row -->
+
   </div>   <!-- /.row -->
 </section>
