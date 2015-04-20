@@ -8,15 +8,41 @@ namespace Admin;
 
 Class Alert
 { 
-    public $id='';
-    public $type='danger';
-    public $title='Alert';
-    public $icon='fa fa-ban';
-    public $body='Lorem lipsum';
+    private $id='';
+    private $type='danger';
+    private $title='Alert';
+    private $body='Lorem ipsum dolor sit amet, consectetur adipiscing elit';
+    private $icon='fa fa-ban';
+    
     
     public function __construct ($type = '', $title = '', $body = '')
     {
         //$this->id = md5(rand(0, time()));
+        $this->type($type);
+        $this->title($title);
+        $this->body($body);
+    }
+
+    function id($str='')
+    {
+        if($str)$this->id=$str;
+        return $this->id;
+    }
+
+    function type($str='')
+    {
+        if($str)$this->type=$str;
+        return $this->type;
+    }
+
+    function title($str=''){
+        if($str)$this->title=$str;
+        return $this->title;
+    }
+    
+    function body($str=''){
+        if($str)$this->body=$str;
+        return $this->body;
     }
 
     function html($type = '', $title = '', $body = '')
@@ -27,9 +53,10 @@ Class Alert
         if($body)$this->body=$body;
 
         $HTML=[];
-        $HTML[]="<div class='alert alert-".$type. " alert-dismissable' id='".$this->id."'>";
-        $HTML[]='<h4><i class="'.$this->icon.'"></i> '.$this->title.'</h4>';
+        $HTML[]="<div class='alert alert-".$this->type. " alert-dismissable' id='".$this->id."'>";
         $HTML[]="<button type=button class=close data-dismiss=alert aria-hidden=true>×</button>";
+        $HTML[]='<h4><i class="'.$this->icon.'"></i>  '.$this->title.'</h4>';
+        
         $HTML[]=$this->body;
         $HTML[]="</div>";
         return implode("\n", $HTML);
