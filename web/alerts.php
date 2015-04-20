@@ -18,47 +18,84 @@ echo $admin->printPublic();//
   </ol>
 </section>
 
+https://almsaeedstudio.com/themes/AdminLTE/pages/UI/general.html
+<hr />
 
 <section class="content">
+  
+
   <div class="row">
     <div class="col-md-6 col-sm-6 col-xs-12" >
 
-      https://almsaeedstudio.com/themes/AdminLTE/pages/UI/general.html
-      
-      <hr />
-
-      <div class="alert alert-danger alert-dismissable">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-        <h4><i class="icon fa fa-ban"></i> Alert!</h4>
-        Danger alert preview. This alert is dismissable. Lorem lipsum.
-      </div>
-
-
       <?php
-      echo new Admin\Alert("danger","Test","Body ??");
-      /*
-      $box=new Admin\Box;
-      $box->title("Alerts");
-      $box->icon("fa fa-warning");
-      $box->type("danger");
-      $box->id("box");
-      echo $box->html("Box body","<button class='btn btn-default'>Button</button>");
+      $types=['warning','danger','info','success'];
+      $body=[];
+      foreach($types as $type){
+        $body[]=new Admin\Alert($type,"Alert type '$type'");
+      }
 
       $box=new Admin\Box;
-      $box->title("Alerts");
       $box->icon("fa fa-warning");
-      //$box->type("default");
-      $box->id("box");
-      echo $box->html("Box body","<button class='btn btn-default'>Button</button>");
-      */
+      $box->title("Alerts");
+      $box->collapsable(true);
+      echo $box->html($body);
+
       ?>
-<pre>
-$box=new Admin\Box;
-$box->title("box title");
-$box->id("box");
-echo $box->html("Box body","&lt;button class='btn btn-default'>Button&lt;/button>");
-</pre>
-
+      </div>
+      <div class="col-md-6 col-sm-6 col-xs-12" >
+      <?php
+      $box=new Admin\Box;
+      $box->icon("fa fa-code");
+      $box->title("PHP");
+      $box->id("box");
+      
+      $htm=[];
+      $htm[]="<pre>";
+      $htm[]="&lt;?php\n";
+      $htm[]="new Admin\Alert(\$type,\"Alert title'\");";
+      $htm[]="</pre>";
+      
+      echo $box->html($htm);
+      ?>     
+      </div>
+    
     </div>   <!-- /.row -->
+
+  <div class="row">
+    
+    <div class="col-md-6 col-sm-6 col-xs-12" >
+      <?php
+      //Callouts
+      $body=[];
+      foreach($types as $type){
+        $body[]= new Admin\Callout($type,"Callout type '$type'","Lorem ipsum");
+      }
+      
+      $box=new Admin\Box;
+      $box->icon("fa fa-warning");
+      $box->title("Callout");
+      $box->collapsable(true);
+      echo $box->html($body);
+      ?>
+    </div>   <!-- /.row -->
+
+    <div class="col-md-6 col-sm-6 col-xs-12" >
+      <?php
+      $box=new Admin\Box;
+      $box->icon("fa fa-code");
+      $box->title("PHP");
+      $box->id("box");
+      
+      $htm=[];
+      $htm[]="<pre>";
+      $htm[]="&lt;?php\n";
+      $htm[]="new Admin\Callout(\$type,\"Callout title\");";
+      $htm[]="</pre>";
+      
+      echo $box->html($htm);
+      ?>     
+      </div>
+  </div>   <!-- /.row -->
+
   </div>   <!-- /.row -->
 </section>
