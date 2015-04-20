@@ -22,16 +22,13 @@
 		"collapsed":false
 	},
 	"menu":{
+		
 		"header":{
 	   		"text":"Header",
 	   		"class":"header"
 	   },
 	   
-	   "login":{
-	      "text":"Login",
-	      "icon":"fa fa-sign-in",
-	      "url":"login.php"
-	   },
+	   
 
 	   "home":{
 	      "text":"Home",
