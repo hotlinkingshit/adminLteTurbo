@@ -22,7 +22,8 @@ class Box
     private $body='box-body';
     private $body_padding=true;//box-body no-padding
     private $footer='';
-    private $collapsed=false;
+    //private $collapsed=false;
+    private $collapsable=false;
     private $removable=false;
     private $loading=false;
 
@@ -180,6 +181,16 @@ class Box
     }
 
 
+    public function collapsable($collapsable = false)
+    {
+        if ($collapsable) {
+            $this->collapsable=$collapsable;
+        }
+        return $this->collapsable;
+    }
+
+
+    /*
     public function collapsed($collapsed = false)
     {
         if ($collapsed) {
@@ -187,6 +198,8 @@ class Box
         }
         return $this->collapsed;
     }
+    */
+    
 
     /**
      * Add a top-right "x" button that allow box desctruction
@@ -265,10 +278,13 @@ class Box
             
             // reduce
             //$HTML[]='<button class="btn btn-'.$this->type.' btn-sm" data-widget="collapse" data-toggle="tooltip" title="" data-original-title="Collapse"><i class="fa fa-minus"></i></button>';
+            if($this->collapsable()){
+                $HTML[]='<button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>';
+            }
             
             // remove
             if ($this->removable()) {
-                $HTML[]='<button class="btn btn-'.$type.' btn-sm" data-widget="remove" data-toggle="tooltip" title="" data-original-title="Remove"><i class="fa fa-times"></i></button>';
+                $HTML[]='<button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="" data-original-title="Remove"><i class="fa fa-times"></i></button>';
             }
 
             $HTML[]='</div>';
@@ -276,16 +292,15 @@ class Box
         $HTML[]='</div>';
         
         // body
-        if ($this->collapsed()) {
-            $HTML[]='<div class="box-body collapsed-box" style="display:none;">';//
-        } else {
-            if($this->body_padding()){
-                $HTML[]="<div class='box-body'>";
-            } else {
-                $HTML[]="<div class='box-body no-padding'>";
-            }
-        }
         
+        if($this->body_padding()){
+            $HTML[]="<div class='box-body'>";
+        } else {
+            $HTML[]="<div class='box-body no-padding'>";
+        }
+
+        
+       
         if (is_array($this->body)) {
             $HTML[]=implode('', $this->body);
         } else {
@@ -297,7 +312,8 @@ class Box
         // footer
         if ($this->footer()) {
             
-            if ($this->collapsed()) {
+            //if ($this->collapsed()) {
+            if (false) {
                 $HTML[]="<div class='box-footer collapsed-box' style='display:none;'>";// $collapse
             } else {
                 $HTML[]="<div class='box-footer'>";// $collapse
