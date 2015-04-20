@@ -8,7 +8,9 @@ require __DIR__."/../vendor/autoload.php";
 
 $admin = new Admin\AdminLte2();
 $admin->title("Menu");
-echo $admin->printPublic();//
+//$admin->menu("Menu");
+
+echo $admin->html();//
 
 //echo new Admin\Contentheader('title','icon','small');
 
@@ -51,11 +53,11 @@ echo $admin->printPublic();//
   <div class="col-md-6 col-sm-6 col-xs-12" >
   <?php
   $box=new Admin\Box;
-  $box->title("Javascript");
+  $box->title("Override <small>\$admin->config()->menu</small>");
   $box->icon("fa fa-bolt");
   $html=[];
-  $html[]="Of course you can manipulate the menu with javascript too:";
-  $html[]="<pre>$('ul.sidebar-menu li')</pre>";
+  $html[]="<pre>".print_r($admin->config()->menu,true)."</pre>";
+  
   echo $box->html($html,"<button class='btn btn-default'>Button</button>");
   ?>
   </div>
