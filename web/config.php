@@ -53,12 +53,18 @@ echo $admin->html();//
     $box->type("solid");
     $box->title("Admin layout");
     $htm=[];
+    $htm[]="Layout classes (fixed, layout-boxed, sidebar-collapse) are set in the config file,<br />";
+    $htm[]="And can be changed on the fly with javascript: ";
     $htm[]="<pre>";
     $htm[]="&lt;script>\n";
     $htm[]='$("body").toggleClass(cls);'."\n";
     $htm[]="&lt;/script>\n";
     $htm[]="</pre>";
     $foot=[];
+    $foot[]="<a href=#btn class='btn btn-default' onclick=$('body').toggleClass('fixed')><i class='fa fa-retweet'></i> fixed</a> ";
+    $foot[]="<a href=#btn class='btn btn-default' onclick=$('body').toggleClass('layout-boxed')><i class='fa fa-retweet'></i> layout-boxed</a> ";
+    $foot[]="<a href=#btn class='btn btn-default' onclick=$('body').toggleClass('sidebar-collapse')><i class='fa fa-retweet'></i> sidebar-collapse</a> ";
+
     echo $box->html($htm,$foot);
     
     // Skins
@@ -69,7 +75,8 @@ echo $admin->html();//
     $htm[]='Skins : "skin-blue", "skin-black", "skin-red", "skin-yellow", "skin-purple", "skin-green"<br />';
     $htm[]="<pre>";
     $htm[]="&lt;script>\n";
-    $htm[]='$("body").toggleClass(cls);'."\n";
+    $htm[]='$("body").removeClass(old_skin);'."\n";
+    $htm[]='$("body").addClass(new_skin);'."\n";
     $htm[]="&lt;/script>\n";
     $htm[]="</pre>";
     $foot=[];
