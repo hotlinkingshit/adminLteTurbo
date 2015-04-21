@@ -41,6 +41,10 @@
 	      "text":"Examples",
 	      "icon":"fa fa-users",
 	      "sub":[{
+			"text":"Login page",
+	      	"icon":"fa fa-sign-in",
+	      	"url":"login.php"
+	      },{
 			"text":"Menu",
 	      	"icon":"fa fa-list",
 	      	"url":"menu.php"
@@ -68,12 +72,28 @@
 
 	      ]
 	   },
-		"youtube":{
-			"text":"Youtube",
-			"title":"It's a surprise !",
-			"icon":"fa fa-youtube-play",
-			"url":"https://www.youtube.com/watch?v=O0t9mTNbQco",	
-			"target":"_blank"
+		"links":
+		{
+			"text":"links",
+			"icon":"fa fa-external-link",
+			"sub":[{
+				"text":"Github",
+				"icon":"fa fa-external-link",
+				"url":"https://github.com/jambonbill/adminLteTurbo",	
+				"target":"_blank"
+				},{
+				"text":"Bootstrap",
+				"icon":"fa fa-external-link",
+				"url":"http://getbootstrap.com/",	
+				"target":"_blank"
+				},{
+				"text":"AdminLTE",
+				"icon":"fa fa-external-link",
+				"title":"It's a surprise !",
+				"icon":"fa fa-youtube-play",
+				"url":"https://almsaeedstudio.com/",
+				"target":"_blank"
+			}]
 		},
 		"separator":{
 	   		"text":"Separator",
@@ -83,7 +103,7 @@
 	      "text":"Logout",
 	      "id":"btn_logout",
 	      "icon":"fa fa-sign-out",
-	      "url":"logout.php"
+	      "url":"login/logout.php"
 	   }
 	}
 }
