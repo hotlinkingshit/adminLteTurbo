@@ -27,7 +27,14 @@ echo $admin;//
 	$box=new Admin\Box;
 	$box->icon('fa fa-code');
 	$box->title('PHP');
-	$box->body('<pre>test</pre>');
+	
+	$htm=[];
+	$htm[]='<pre>';
+	$htm[]='&lt;?php'."\n";
+	$htm[]='new Admin\Modal("Titre de la fenetre modal","Body","Footer")';
+	$htm[]='</pre>';
+
+	$box->body($htm);
 	echo $box;
 	?>
 	</div>
@@ -45,7 +52,7 @@ echo $admin;//
 
 
 <?php
-$modal = new Admin\Modal("Titre de la fenetre modal","Body building","Foot locker");
+$modal = new Admin\Modal("Titre de la fenetre modal","Body","Footer");
 $modal->id("modalwindow");
 $modal->icon("fa fa-user");
 echo $modal;

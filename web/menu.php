@@ -27,6 +27,7 @@ echo $admin->html();//
       // Menu config
       $box=new Admin\Box;
       $box->title("Menu configuration");
+      $box->type("info");
       $box->icon("fa fa-warning");
       $box->id("box");
       $body=[];

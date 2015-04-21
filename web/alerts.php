@@ -8,17 +8,16 @@ require __DIR__."/../vendor/autoload.php";
 
 $admin = new Admin\AdminLte2();
 $admin->title("AdminLte2Turbo");
-echo $admin->printPublic();//
+echo $admin->html();//
 ?>
 <section class="content-header">
-  <h1><i class='fa fa-warning'></i> Alerts</h1>
-  <ol class="breadcrumb">
-    <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-    <li class="active">Here</li>
-  </ol>
+  <h1>
+  <i class='fa fa-warning'></i> Alerts
+  <small>https://almsaeedstudio.com/themes/AdminLTE/pages/UI/general.html</small>
+  </h1>
 </section>
 
-https://almsaeedstudio.com/themes/AdminLTE/pages/UI/general.html
+
 <hr />
 
 <section class="content">
@@ -28,7 +27,7 @@ https://almsaeedstudio.com/themes/AdminLTE/pages/UI/general.html
     <div class="col-md-6 col-sm-6 col-xs-12" >
 
       <?php
-      $types=['warning','danger','info','success'];
+      $types=['info','success','warning','danger'];
       $body=[];
       foreach($types as $type){
         $body[]=new Admin\Alert($type,"Alert type '$type'");
@@ -55,6 +54,15 @@ https://almsaeedstudio.com/themes/AdminLTE/pages/UI/general.html
       $htm[]="new Admin\Alert(\$type,\"Alert title'\");";
       $htm[]="</pre>";
       
+      $htm[]="or";
+      
+      $htm[]="<pre>";
+      $htm[]="&lt;?php\n";
+      $htm[]="\$alert=new Admin\Alert();\n";
+      $htm[]="\$alert->icon('fa fa-warning');\n";
+      $htm[]="echo \$alert\Alert();\n";
+      $htm[]="</pre>";
+
       echo $box->html($htm);
       ?>     
       </div>

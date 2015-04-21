@@ -6,9 +6,19 @@ require __DIR__."/../vendor/autoload.php";
 
 $admin = new Admin\AdminLte2();
 $admin->menu("Config");
-//$admin->config()->menusearch=false;
-$admin->config()->menu=false;
+
+$admin->config()->menusearch=false;
+$menu=$admin->config()->menu->examples=[];
+
+//echo "<pre>";var_dump($menu);exit;
+
+$admin->navbarCustomMenu('html');
+
+
 echo $admin->html();//
+
+//$admin->bidule("html");
+
 
 //echo new Admin\Contentheader('title','icon','small');
 ?>
@@ -19,12 +29,64 @@ echo $admin->html();//
 
 <section class="content">
   <div class="row">
+
+    <div class="col-md-6 col-sm-6 col-xs-12" >
+    <?php
+    // Config file
+    $box=new Admin\Box;
+    $box->title("Global configuration file");
+    $box->icon("fa fa-bolt");
+    $htm=[];
+    $htm[]="Admin is configured thanks to one json file in src/Admin/config.json";
+    $htm[]="<ul>";
+    $htm[]="<li>Title</li>";
+    $htm[]="<li>Favicon</li>";
+    $htm[]="<li>Layout</li>";
+    $htm[]="<li>CSS</li>";
+    $htm[]="<li>JS</li>";
+    $htm[]="<li>Menu</li>";
+    $htm[]="</ul>";
+    echo $box->html($htm,"<button class='btn btn-default'>Ok</button>");
+    
+    // Layout
+    $box=new Admin\Box;
+    $box->type("solid");
+    $box->title("Admin layout");
+    $htm=[];
+    $htm[]="<pre>";
+    $htm[]="&lt;script>\n";
+    $htm[]='$("body").toggleClass(cls);'."\n";
+    $htm[]="&lt;/script>\n";
+    $htm[]="</pre>";
+    $foot=[];
+    echo $box->html($htm,$foot);
+    
+    // Skins
+    $box=new Admin\Box;
+    $box->type("solid");
+    $box->title("Admin skins");
+    $htm=[];
+    $htm[]='Skins : "skin-blue", "skin-black", "skin-red", "skin-yellow", "skin-purple", "skin-green"<br />';
+    $htm[]="<pre>";
+    $htm[]="&lt;script>\n";
+    $htm[]='$("body").toggleClass(cls);'."\n";
+    $htm[]="&lt;/script>\n";
+    $htm[]="</pre>";
+    $foot=[];
+    
+    echo $box->html($htm,$foot);
+    
+    ?>
+    </div>
+
+
     <div class="col-md-6 col-sm-6 col-xs-12" >
      
       <?php
       $box=new Admin\Box;
       $box->title("\$admin->config()");
       $box->icon("fa fa-wrench");
+      $box->collapsable(true);
       $html=[];
       $html[]="You can get/set the admin config width \$admin->config()";
       $html[]="<pre>\$admin->config()".print_r($admin->config(),true)."</pre>";
@@ -37,19 +99,7 @@ echo $admin->html();//
 
     </div>   <!-- /.row -->
 
-  <div class="col-md-6 col-sm-6 col-xs-12" >
-  <?php
-  /*
-  $box=new Admin\Box;
-  $box->title("Javascript");
-  $box->icon("fa fa-bolt");
-  $html=[];
-  $html[]="Of course you can manipulate the menu with javascript too:";
-  $html[]="<pre>$('ul.sidebar-menu li')</pre>";
-  echo $box->html($html,"<button class='btn btn-default'>Button</button>");
-  */
-  ?>
-  </div>
+  
 
   </div>   <!-- /.row -->
 </section>
