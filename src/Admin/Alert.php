@@ -23,29 +23,35 @@ Class Alert
         $this->body($body);
     }
 
-    function id($str='')
+    public function id($str='')
     {
         if($str)$this->id=$str;
         return $this->id;
     }
 
-    function type($str='')
+    public function icon($str='')
+    {
+        if($str)$this->icon=$str;
+        return $this->icon;   
+    }
+
+    public function type($str='')
     {
         if($str)$this->type=$str;
         return $this->type;
     }
 
-    function title($str=''){
+    public function title($str=''){
         if($str)$this->title=$str;
         return $this->title;
     }
     
-    function body($str=''){
+    public function body($str=''){
         if($str)$this->body=$str;
         return $this->body;
     }
 
-    function html($type = '', $title = '', $body = '')
+    public function html($type = '', $title = '', $body = '')
     {
         
         if($type)$this->type=$type;
