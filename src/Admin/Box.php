@@ -19,6 +19,7 @@ class Box
     private $style='';
     private $title='box-title';
     private $small='';//
+    private $boxTools='';//(mini top tray on the right)
     private $body='box-body';
     private $body_padding=true;//box-body no-padding
     private $footer='';
@@ -138,6 +139,7 @@ class Box
         return $this->body;
     }
     
+    
     /**
      * Set the body padding (add the class 'no-padding to the box boddy')
      * Padding is set (true) by default
@@ -190,15 +192,15 @@ class Box
     }
 
 
-    /*
-    public function collapsed($collapsed = false)
+    
+    public function boxTools($htm = '')
     {
-        if ($collapsed) {
-            $this->collapsed=$collapsed;
+        if ($htm) {
+            $this->boxTools=$htm;
         }
-        return $this->collapsed;
+        return $this->boxTools;
     }
-    */
+    
     
 
     /**
@@ -271,28 +273,33 @@ class Box
             $HTML[]='</h3>';
         }
         
-
-            $HTML[]='<div class="pull-right box-tools">';
-            // reload
-            //$HTML[]='<button class="btn btn-'.$type.' btn-sm refresh-btn" data-toggle="tooltip" title="" data-original-title="Reload"><i class="fa fa-refresh"></i></button>';
-            
-            // reduce
-            //$HTML[]='<button class="btn btn-'.$this->type.' btn-sm" data-widget="collapse" data-toggle="tooltip" title="" data-original-title="Collapse"><i class="fa fa-minus"></i></button>';
-            if($this->collapsable()){
-                $HTML[]='<button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>';
-            }
-            
-            // remove
-            if ($this->removable()) {
-                $HTML[]='<button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="" data-original-title="Remove"><i class="fa fa-times"></i></button>';
-            }
-
-            $HTML[]='</div>';
+        // pull-right box-tools
+        $HTML[]='<div class="pull-right box-tools">';
         
+        if($this->boxTools()){
+            $HTML[]=$this->boxTools();
+        }
+
+        // reload
+        //$HTML[]='<button class="btn btn-'.$type.' btn-sm refresh-btn" data-toggle="tooltip" title="" data-original-title="Reload"><i class="fa fa-refresh"></i></button>';
+        
+        // reduce
+        //$HTML[]='<button class="btn btn-'.$this->type.' btn-sm" data-widget="collapse" data-toggle="tooltip" title="" data-original-title="Collapse"><i class="fa fa-minus"></i></button>';
+        
+        if($this->collapsable()){
+            $HTML[]='<button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="" data-original-title="Collapse"><i class="fa fa-minus"></i></button>';
+        }
+        
+        // remove
+        if ($this->removable()) {
+            $HTML[]='<button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="" data-original-title="Remove"><i class="fa fa-times"></i></button>';
+        }
+
+        $HTML[]='</div>';
+    
         $HTML[]='</div>';
         
         // body
-        
         if($this->body_padding()){
             $HTML[]="<div class='box-body'>";
         } else {
@@ -300,7 +307,6 @@ class Box
         }
 
         
-       
         if (is_array($this->body)) {
             $HTML[]=implode('', $this->body);
         } else {
@@ -328,12 +334,11 @@ class Box
             $HTML[]='</div>';
         }
 
-        // loader layer
-        //$HTML[]='<div>'.($this->loading?'Loading':'Loaded').'</div>';
         
         if ($this->loading()) {
-            $HTML[]='<div class="overlay"></div>';
-            $HTML[]='<div class="loading-img"></div>';
+            $HTML[]='<div class="overlay"><i class="fa fa-refresh fa-spin"></i></div>';
+        }else{
+            $HTML[]='<div class="overlay" style="display:none"><i class="fa fa-refresh fa-spin"></i></div>';
         }
 
         // end
@@ -349,11 +354,12 @@ class Box
 }
 
 
-namespace Admin;
+//namespace Admin;
 
 /**
  * SolidBox
  */
+/*
 class SolidBox extends Box
 {
 
@@ -447,11 +453,12 @@ class SolidBox extends Box
         return implode('', $HTML);
     }
 }
-
+*/
 
 /**
  * Mini boites avec icon pour homepage (gros bouton)
  */
+/*
 class SmallBox extends Box
 {
     private $value='0';
@@ -496,10 +503,10 @@ class SmallBox extends Box
         return implode('', $HTML);
     }
 }
+*/
 
 
-
-
+/*
 class Tile extends Box
 {
    
@@ -534,6 +541,8 @@ class Tile extends Box
         return implode('', $HTML);
     }
 }
+*/
+
 
 /**
  * AdminLte Alert
@@ -563,6 +572,7 @@ class Tile extends Box
 /**
  * AdminLte Callout
  */
+/*
 Class Callout
 {
     private $type ='type';
@@ -588,3 +598,4 @@ Class Callout
         return implode("\n", $HTML);
     }
 }
+*/
