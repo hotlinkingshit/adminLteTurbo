@@ -21,7 +21,8 @@ class AdminLte2
     private $config=[];//admin config from json file
     private $title= 'AdminLte Turbo';// document title
     private $DEBUG=false;
-
+    private $navbarCustomMenu='';//html
+    
     /**
      * AdminLte Constructor
      * @param boolean $private [description]
@@ -118,23 +119,6 @@ class AdminLte2
 
     
     /**
-     * Print all admin html data
-     * @return [type] [description]
-     */
-    public function printPublic()
-    {
-        echo $this->head();
-        echo $this->body();
-        echo $this->header();
-        echo $this->leftside();
-        echo $this->scripts();
-        echo '<aside class="right-side">';
-        return;
-    }
-
-
-
-    /**
      * head
      * bring the headers, and initial assets
      * @return [type] [description]
@@ -218,9 +202,8 @@ class AdminLte2
     
         // Navbar right menu    
         $HTML[]='<div class="navbar-custom-menu">';
-
-        $HTML[]='test';
-        
+        //$HTML[]='navbar-custom-menu';
+        $HTML[]=$this->navbarCustomMenu;
         $HTML[]='</div>';
 
 
@@ -230,6 +213,18 @@ class AdminLte2
         return implode("\n", $HTML);
     }
 
+    
+    /**
+     * Set top navbar html 
+     * Usefull for user messages
+     * @param  string $htm [description]
+     * @return [type]      [description]
+     */
+    public function navbarCustomMenu($htm = '')
+    {
+        if($htm)$this->navbarCustomMenu=$htm;
+        return $this->navbarCustomMenu;
+    }
 
     /**
      * Adminlte2 Footer, this one need some tweaking
@@ -327,6 +322,7 @@ class AdminLte2
             $title='';
             $class='';
             
+            if(!$o)continue;
             if(isset($o->class))$class='class="'.$o->class.'"';
             if(isset($o->title))$title='title="'.$o->title.'"';
             
