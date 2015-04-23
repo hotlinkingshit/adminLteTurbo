@@ -1,7 +1,7 @@
 {
 	"title":"AdminLte2 Turbo",
 	"homeurl":"index.php",
-	"favicon":"favicon.ico",
+	"favicon":"img/favicon.png",
 	"menusearch":true,
 	"css":[
 		"bootstrap/css/bootstrap.min.css",
@@ -18,8 +18,8 @@
 	"layout":{
 		"skin":"skin-yellow",
 		"fixed":false,
-		"boxed":false,
-		"collapsed":false
+		"layout-boxed":true,
+		"sidebar-collapse":true
 	},
 	"menu":{
 		
