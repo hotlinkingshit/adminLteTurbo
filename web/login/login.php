@@ -14,3 +14,7 @@ echo $admin->html();//
 <pre>
 <?php
 print_r($_POST);
+?>
+<script>
+setTimeout("document.location.href='../';",2000);
+</script>
