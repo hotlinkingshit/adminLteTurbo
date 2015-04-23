@@ -12,7 +12,7 @@ namespace Admin;
 class Box
 {
     private $id='';
-    private $type='default';
+    private $type='solid';
     private $icon='';
     private $iconUrl='';
     private $color='';
@@ -23,8 +23,8 @@ class Box
     private $body='box-body';
     private $body_padding=true;//box-body no-padding
     private $footer='';
-    //private $collapsed=false;
     private $collapsable=false;
+    private $collapsed=false;
     private $removable=false;
     private $loading=false;
 
@@ -191,6 +191,15 @@ class Box
         return $this->collapsable;
     }
 
+    
+    public function collapsed($collapsed = false)
+    {
+        if ($collapsed) {
+            $this->collapsable=true;
+            $this->collapsed=true;
+        }
+        return $this->collapsed;
+    }
 
     
     public function boxTools($htm = '')
@@ -246,7 +255,13 @@ class Box
         }
 
         $HTML=[];
-        $HTML[]='<div class="box box-'.$this->type().'" '.$STYLE.' id="'.$this->id().'">';// box-solid
+        
+        $class=[];
+        $class[]='box';
+        $class[]='box-'.$this->type();
+        if($this->collapsed)$class[]='collapsed-box';
+        
+        $HTML[]='<div class="'.implode(" ",$class).'" '.$STYLE.' id="'.$this->id().'">';// box-solid
 
         // box header
         $HTML[]='<div class="box-header">';
@@ -283,11 +298,14 @@ class Box
         // reload
         //$HTML[]='<button class="btn btn-'.$type.' btn-sm refresh-btn" data-toggle="tooltip" title="" data-original-title="Reload"><i class="fa fa-refresh"></i></button>';
         
-        // reduce
-        //$HTML[]='<button class="btn btn-'.$this->type.' btn-sm" data-widget="collapse" data-toggle="tooltip" title="" data-original-title="Collapse"><i class="fa fa-minus"></i></button>';
         
         if($this->collapsable()){
-            $HTML[]='<button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="" data-original-title="Collapse"><i class="fa fa-minus"></i></button>';
+            if($this->collapsed()){
+                $class="fa fa-plus";
+            }else{
+                $class="fa fa-minus";
+            }
+            $HTML[]='<button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="" data-original-title="Collapse"><i class="'.$class.'"></i></button>';
         }
         
         // remove
@@ -299,12 +317,20 @@ class Box
     
         $HTML[]='</div>';
         
+        
         // body
-        if($this->body_padding()){
-            $HTML[]="<div class='box-body'>";
-        } else {
-            $HTML[]="<div class='box-body no-padding'>";
+        $class=$style=[];
+        $class[]='box-body';
+        if($this->collapsed()){
+            $class[]='collapsed-box';
+            $style[]='display:none;';
         }
+        
+        if(!$this->body_padding()){
+            $class[]='no-padding';
+        }
+
+        $HTML[]="<div class='".implode(' ',$class)."' style='".implode('',$style)."'>";
 
         
         if (is_array($this->body)) {
@@ -318,8 +344,8 @@ class Box
         // footer
         if ($this->footer()) {
             
-            //if ($this->collapsed()) {
-            if (false) {
+            if ($this->collapsed()) {
+            //if (false) {
                 $HTML[]="<div class='box-footer collapsed-box' style='display:none;'>";// $collapse
             } else {
                 $HTML[]="<div class='box-footer'>";// $collapse
