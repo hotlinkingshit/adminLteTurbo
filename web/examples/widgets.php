@@ -2,7 +2,7 @@
 header('Content-Type: text/html; charset=utf-8');
 session_start();
 
-require __DIR__."/../vendor/autoload.php";
+require __DIR__."/../../vendor/autoload.php";
 
 //use Admin\AdminLte;
 

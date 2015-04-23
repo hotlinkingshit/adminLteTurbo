@@ -2,7 +2,7 @@
 header('Content-Type: text/html; charset=utf-8');
 session_start();
 
-require __DIR__."/../vendor/autoload.php";
+require __DIR__."/../../vendor/autoload.php";
 
 //use Admin\AdminLte;
 
@@ -11,12 +11,8 @@ $admin->title("AdminLte2Turbo");
 echo $admin->html();//
 ?>
 <section class="content-header">
-  <h1><i class='fa fa-list-alt'></i> Boxes<small>Little boxes</small>
+  <h1><i class='fa fa-list-alt'></i> Boxes <small>$box=new Admin\Box;</small>
   </h1>
-  <ol class="breadcrumb">
-    <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-    <li class="active">Here</li>
-  </ol>
 </section>
 
 
@@ -41,9 +37,9 @@ echo $admin->html();//
         $body[]="<pre>";
         $body[]="&lt;?php\n";
         $body[]="\$box=new Admin\Box;\n";
-        $body[]="\$box->type(\"box-$type\");\n";
+        $body[]="\$box->type(\"$type\");\n";
         $body[]="</pre>";
-        echo $box->html($body,"<button class='btn btn-default'>Ok</button>");  
+        echo $box->html($body);
       }
       
       ?>
@@ -54,6 +50,7 @@ echo $admin->html();//
     $box=new Admin\Box;
     $box->icon("fa fa-code");
     $box->title("Php");
+    $box->type("solid");
     $box->collapsable(true);
     $btns ="<button class=\"btn btn-box-tool\" title='Example'><i class='fa fa-comments'></i></button>";
     $btns ="<button class=\"btn btn-box-tool\" title='Example'><i class='fa fa-save'></i></button>";
@@ -67,7 +64,6 @@ echo $admin->html();//
     $htm[]='&lt;?php'."\n";
     $htm[]='$box=new Admin\Box;'."\n";
     $htm[]='$box->title("box title");'."\n";
-    $htm[]='$box->type("default");'."\n";
     $htm[]='$box->id("mybox");'."\n";
     $htm[]='$box->collapsabe(true);'."\n";
     $htm[]='$box->removable(false);'."\n";
@@ -78,7 +74,9 @@ echo $admin->html();//
     $box=new Admin\Box;
     $box->id("thisbox");
     $box->icon("fa fa-refresh");
-    $box->title("Box loading state");
+    $box->type("solid");
+    $box->collapsed(true);
+    $box->title("Loading state");
     
     $htm=[];
     $htm[]="Box loading state can be set with php<br />";
@@ -101,6 +99,14 @@ echo $admin->html();//
     //$foot[]="<button class='btn btn-default'>$('#thisbox .overlay').hide()</button> ";
     $foot[]="<button class='btn btn-default' onclick=\"$('#thisbox .overlay').show()\"><i class='fa fa-play'></i> $('#thisbox .overlay').show()</button> ";
     echo $box->html($htm,$foot);
+    
+    // box collapsed
+    $box=new Admin\Box;
+    $box->type("solid");
+    $box->title("Box collapsed");
+    $box->collapsed(true);
+    $box->html("<pre>&lt;?php\n\$box->collapsed(true);</pre>");
+    echo $box;
     ?>
 
     </div>   <!-- /.row -->
