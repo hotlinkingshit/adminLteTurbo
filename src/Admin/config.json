@@ -16,15 +16,15 @@
     	"dist/js/app.min.js"
 	],
 	"layout":{
-		"skin":"skin-yellow",
+		"skin":"skin-red",
 		"fixed":false,
-		"layout-boxed":true,
-		"sidebar-collapse":true
+		"layout-boxed":false,
+		"sidebar-collapse":false
 	},
 	"menu":{
 		
 		"header":{
-	   		"text":"Header",
+	   		"text":"Menu",
 	   		"class":"header"
 	   },
 	   
@@ -43,31 +43,35 @@
 	      "sub":[{
 			"text":"Login page",
 	      	"icon":"fa fa-sign-in",
-	      	"url":"login.php"
+	      	"url":"./login"
 	      },{
 			"text":"Menu",
 	      	"icon":"fa fa-list",
-	      	"url":"menu.php"
+	      	"url":"examples/menu.php"
 	      },{
 			"text":"Boxes",
 	      	"icon":"fa fa-list-alt",
-	      	"url":"boxes.php"
+	      	"url":"examples/boxes.php"
 	      },{  
 			"text":"Alerts",
 	      	"icon":"fa fa-warning",
-	      	"url":"alerts.php"
+	      	"url":"examples/alerts.php"
 	      },{  
 			"text":"Modals",
 	      	"icon":"fa fa-exclamation-circle",
-	      	"url":"modals.php"
+	      	"url":"examples/modals.php"
 	      },{  
 	      	"text":"Widgets",
 	      	"icon":"fa fa-home",
-	      	"url":"widgets.php"
+	      	"url":"examples/widgets.php"
+	      },{  
+	      	"text":"Timeline",
+	      	"icon":"fa fa-clock-o",
+	      	"url":"examples/timeline.php"
 	      },{  
 	      	"text":"Icons",
 	      	"icon":"fa fa-flag",
-	      	"url":"icons.php"
+	      	"url":"examples/icons.php"
 	      }
 
 	      ]
