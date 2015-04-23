@@ -133,7 +133,7 @@ class AdminLte2
         $HTML[]="<title>".$this->title."</title>";
         $HTML[]="<meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>";
         //$HTML[]="<link rel='shortcut icon' href='".$this->path."img/favicon.png' type='image/png' />";
-        if($this->config->favicon){
+        if($this->config->favicon && is_file($this->config->favicon)){
             $HTML[]='<link rel="shortcut icon" href="'.$this->path.$this->config->favicon.'">';    
         }
         
@@ -162,8 +162,18 @@ class AdminLte2
     {
         $HTML=[];
         //todo, read it from the config file
-        $skin='skin-blue';
-        $HTML[]="<body class='$skin'>";
+        //$skin='skin-blue';
+        $class=[];
+        //$class[]='skin-blue';
+        if($this->config()->layout->skin)$class[]=$this->config()->layout->skin;
+        else $class[]='skin-blue';
+
+        if($this->config()->layout->fixed)$class[]='fixed';
+        if($this->config()->layout->{'sidebar-collapse'})$class[]='sidebar-collapse';
+        if($this->config()->layout->{'layout-boxed'})$class[]='layout-boxed';
+
+        $HTML[]="<body class='".implode(" ",$class)."'>";
+        $HTML[]='<div class="wrapper">';
         return implode("\n", $HTML);
     }
 
