@@ -1,3 +1,6 @@
+# Plugins
+plugins/
+
 # Build and Release Folders
 bin/
 bin-debug/
