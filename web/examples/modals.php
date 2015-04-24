@@ -4,7 +4,7 @@ session_start();
 require __DIR__."/../../vendor/autoload.php";
 
 
-$admin = new Admin\AdminLte2();
+$admin = new LTE\AdminLte2();
 $admin->title("Modals");
 echo $admin;//
 ?>
@@ -18,7 +18,7 @@ echo $admin;//
 <div class='row'>
 	<div class='col-md-6'>
 	<?php
-	$box=new Admin\Box;
+	$box=new LTE\Box;
 	$box->title('Modal types');
 	$htm=[];
 	$htm[]="<a href=#btn class='btn btn-default'>default</a> ";
@@ -30,14 +30,14 @@ echo $admin;//
 	$box->body($htm);
 	echo $box;
 
-	$box=new Admin\Box;
+	$box=new LTE\Box;
 	$box->icon('fa fa-code');
 	$box->title('PHP');
 	
 	$htm=[];
 	$htm[]='<pre>';
 	$htm[]='&lt;?php'."\n";
-	$htm[]='$modal=new Admin\Modal;'."\n";
+	$htm[]='$modal=new LTE\Modal;'."\n";
 	$htm[]='$modal->type("default");'."\n";
 	$htm[]='$modal->icon("string");'."\n";
 	$htm[]='$modal->title("string");'."\n";
@@ -52,7 +52,7 @@ echo $admin;//
 	</div>
 	<div class='col-md-6'>
 	<?php
-	$box=new Admin\Box;
+	$box=new LTE\Box;
 	$box->icon('fa fa-code');
 	$box->title('Javascript');
 	//$box->body();
@@ -64,7 +64,7 @@ echo $admin;//
 
 
 <?php
-$modal = new Admin\Modal;
+$modal = new LTE\Modal;
 $modal->id("myModal");
 $modal->icon("fa fa-user");
 //$modal->body("<pre>".print_r($_SERVER,true)."</pre>");

@@ -4,7 +4,7 @@ session_start();
 
 require __DIR__."/../../vendor/autoload.php";
 
-$admin = new Admin\AdminLte2();
+$admin = new LTE\AdminLte2();
 $admin->title("Callout");
 echo $admin->printPublic();//
 ?>
@@ -23,9 +23,9 @@ echo $admin->printPublic();//
   <div class="row">
 
     <div class="col-md-6 col-sm-6 col-xs-12" >
-      <pre>echo new Admin\Callout("danger","title","body");</pre>  
+      <pre>echo new LTE\Callout("danger","title","body");</pre>  
       <hr />
-      <?php echo new Admin\Callout("danger","title","body");?>
+      <?php echo new LTE\Callout("danger","title","body");?>
     </div>
 
     <div class="col-md-6 col-sm-6 col-xs-12" >

@@ -4,7 +4,7 @@ session_start();
 require __DIR__."/../../vendor/autoload.php";
 
 
-$admin = new Admin\AdminLte2();
+$admin = new LTE\AdminLte2();
 $admin->title("Login");
 $admin->config()->menusearch=false;//disable menu search
 $admin->config()->menu=(object)[];//unset the global menu

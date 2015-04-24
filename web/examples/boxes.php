@@ -4,14 +4,14 @@ session_start();
 
 require __DIR__."/../../vendor/autoload.php";
 
-//use Admin\AdminLte;
+//use LTE\AdminLte;
 
-$admin = new Admin\AdminLte2();
+$admin = new LTE\AdminLte2();
 $admin->title("AdminLte2Turbo");
 echo $admin->html();//
 ?>
 <section class="content-header">
-  <h1><i class='fa fa-list-alt'></i> Boxes <small>$box=new Admin\Box;</small>
+  <h1><i class='fa fa-list-alt'></i> Boxes <small>$box=new LTE\Box;</small>
   </h1>
 </section>
 
@@ -25,7 +25,7 @@ echo $admin->html();//
       
       foreach($types as $type)
       {
-        $box=new Admin\Box;
+        $box=new LTE\Box;
         $box->title("Box type '$type'");
         //$box->icon("fa fa-user");
         $box->type($type);
@@ -36,7 +36,7 @@ echo $admin->html();//
         $body=[];
         $body[]="<pre>";
         $body[]="&lt;?php\n";
-        $body[]="\$box=new Admin\Box;\n";
+        $body[]="\$box=new LTE\Box;\n";
         $body[]="\$box->type(\"$type\");\n";
         $body[]="</pre>";
         echo $box->html($body);
@@ -47,7 +47,7 @@ echo $admin->html();//
     
     <div class="col-md-6 col-sm-6 col-xs-12" >
     <?php
-    $box=new Admin\Box;
+    $box=new LTE\Box;
     $box->icon("fa fa-code");
     $box->title("Php");
     $box->type("solid");
@@ -62,7 +62,7 @@ echo $admin->html();//
     $htm=[];
     $htm[]='<pre>'."\n";
     $htm[]='&lt;?php'."\n";
-    $htm[]='$box=new Admin\Box;'."\n";
+    $htm[]='$box=new LTE\Box;'."\n";
     $htm[]='$box->title("box title");'."\n";
     $htm[]='$box->id("mybox");'."\n";
     $htm[]='$box->collapsabe(true);'."\n";
@@ -71,7 +71,7 @@ echo $admin->html();//
     $htm[]='</pre>';
     echo $box->html($htm);
     
-    $box=new Admin\Box;
+    $box=new LTE\Box;
     $box->id("thisbox");
     $box->icon("fa fa-refresh");
     $box->type("solid");
@@ -83,7 +83,7 @@ echo $admin->html();//
     
     $htm[]='<pre>'."\n";
     $htm[]='&lt;?php'."\n";
-    $htm[]='$box=new Admin\Box;'."\n";
+    $htm[]='$box=new LTE\Box;'."\n";
     $htm[]='$box->id("thisbox");'."\n";
     $htm[]='$box->loading(true);'."\n";
     $htm[]='</pre>';
@@ -101,7 +101,7 @@ echo $admin->html();//
     echo $box->html($htm,$foot);
     
     // box collapsed
-    $box=new Admin\Box;
+    $box=new LTE\Box;
     $box->type("solid");
     $box->title("Box collapsed");
     $box->collapsed(true);

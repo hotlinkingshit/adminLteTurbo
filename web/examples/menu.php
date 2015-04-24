@@ -4,15 +4,13 @@ session_start();
 
 require __DIR__."/../../vendor/autoload.php";
 
-//use Admin\AdminLte;
-
-$admin = new Admin\AdminLte2();
+$admin = new LTE\AdminLte2();
 $admin->title("Menu");
 //$admin->menu("Menu");
 
 echo $admin->html();//
 
-//echo new Admin\Contentheader('title','icon','small');
+//echo new LTE\Contentheader('title','icon','small');
 
 ?>
 <section class="content-header">
@@ -25,7 +23,7 @@ echo $admin->html();//
     <div class="col-md-6 col-sm-6 col-xs-12" >
       <?php
       // Menu config
-      $box=new Admin\Box;
+      $box=new LTE\Box;
       $box->title("Menu configuration");
       $box->type("info");
       $box->icon("fa fa-warning");
@@ -37,7 +35,7 @@ echo $admin->html();//
       echo $box->html($body,"<button class='btn btn-default'>Ok</button>");
       
       // Menu search
-      $box=new Admin\Box;
+      $box=new LTE\Box;
       $box->title("Menu search");
       $box->icon("fa fa-search");
       $box->id("box");
@@ -53,7 +51,7 @@ echo $admin->html();//
 
   <div class="col-md-6 col-sm-6 col-xs-12" >
   <?php
-  $box=new Admin\Box;
+  $box=new LTE\Box;
   $box->title("Override <small>\$admin->config()->menu</small>");
   $box->icon("fa fa-bolt");
   $html=[];

@@ -4,11 +4,9 @@ session_start();
 
 require __DIR__."/../../vendor/autoload.php";
 
-//use Admin\AdminLte;
-
-$admin = new Admin\AdminLte2();
+$admin = new LTE\AdminLte2();
 $admin->title("AdminLte2Turbo");
-echo $admin->printPublic();//
+echo $admin->html();//
 ?>
 <section class="content-header">
   <h1>

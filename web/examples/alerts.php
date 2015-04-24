@@ -4,9 +4,9 @@ session_start();
 
 require __DIR__."/../../vendor/autoload.php";
 
-//use Admin\AdminLte;
+//use LTE\AdminLte;
 
-$admin = new Admin\AdminLte2();
+$admin = new LTE\AdminLte2();
 $admin->title("AdminLte2Turbo");
 echo $admin->html();//
 ?>
@@ -30,10 +30,10 @@ echo $admin->html();//
       $types=['info','success','warning','danger'];
       $body=[];
       foreach($types as $type){
-        $body[]=new Admin\Alert($type,"Alert type '$type'");
+        $body[]=new LTE\Alert($type,"Alert type '$type'");
       }
 
-      $box=new Admin\Box;
+      $box=new LTE\Box;
       $box->icon("fa fa-warning");
       $box->title("Alerts");
       $box->collapsable(true);
@@ -43,7 +43,7 @@ echo $admin->html();//
       </div>
       <div class="col-md-6 col-sm-6 col-xs-12" >
       <?php
-      $box=new Admin\Box;
+      $box=new LTE\Box;
       $box->icon("fa fa-code");
       $box->title("PHP");
       $box->id("box");
@@ -51,14 +51,14 @@ echo $admin->html();//
       $htm=[];
       $htm[]="<pre>";
       $htm[]="&lt;?php\n";
-      $htm[]="new Admin\Alert(\$type,\"Alert title'\");";
+      $htm[]="new LTE\Alert(\$type,\"Alert title'\");";
       $htm[]="</pre>";
       
       $htm[]="or";
       
       $htm[]="<pre>";
       $htm[]="&lt;?php\n";
-      $htm[]="\$alert=new Admin\Alert();\n";
+      $htm[]="\$alert=new LTE\Alert();\n";
       $htm[]="\$alert->icon('fa fa-warning');\n";
       $htm[]="echo \$alert\Alert();\n";
       $htm[]="</pre>";
@@ -76,10 +76,10 @@ echo $admin->html();//
       //Callouts
       $body=[];
       foreach($types as $type){
-        $body[]= new Admin\Callout($type,"Callout type '$type'","Lorem ipsum");
+        $body[]= new LTE\Callout($type,"Callout type '$type'","Lorem ipsum");
       }
       
-      $box=new Admin\Box;
+      $box=new LTE\Box;
       $box->icon("fa fa-warning");
       $box->title("Callout");
       $box->collapsable(true);
@@ -89,7 +89,7 @@ echo $admin->html();//
 
     <div class="col-md-6 col-sm-6 col-xs-12" >
       <?php
-      $box=new Admin\Box;
+      $box=new LTE\Box;
       $box->icon("fa fa-code");
       $box->title("PHP");
       $box->id("box");
@@ -97,7 +97,7 @@ echo $admin->html();//
       $htm=[];
       $htm[]="<pre>";
       $htm[]="&lt;?php\n";
-      $htm[]="new Admin\Callout(\$type,\"Callout title\");";
+      $htm[]="new LTE\Callout(\$type,\"Callout title\");";
       $htm[]="</pre>";
       
       echo $box->html($htm);

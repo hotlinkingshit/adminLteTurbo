@@ -4,7 +4,7 @@ session_start();
 
 require __DIR__."/../vendor/autoload.php";
 
-use Admin\AdminLte;
+use LTE\AdminLte;
 
 $admin = new AdminLte2();
 $admin->title("AdminLte2Turbo");
@@ -30,4 +30,4 @@ Hello World :)
 
 
 //lets test a few boxes
-echo new Admin\Callout("Test");
+echo new LTE\Callout("Test");

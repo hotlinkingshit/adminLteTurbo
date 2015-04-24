@@ -3,9 +3,7 @@ header('Content-Type: text/html; charset=utf-8');
 session_start();
 require __DIR__."/../vendor/autoload.php";
 
-//use Admin\AdminLte;
-
-$admin = new Admin\AdminLte2();
+$admin = new LTE\AdminLte2();
 $admin->title("Home");
 echo $admin;//
 ?>
@@ -19,7 +17,7 @@ echo $admin;//
   <div class="row">
     <div class="col-md-6 col-sm-6 col-xs-12" >
     <?php
-    $box= new Admin\Box;
+    $box= new LTE\Box;
     $box->icon("fa fa-question");
     $box->type("warning");
     $box->title("About");

@@ -4,9 +4,7 @@ session_start();
 
 require __DIR__."/../../vendor/autoload.php";
 
-use Admin\AdminLte;
-
-$admin = new Admin\AdminLte2();
+$admin = new LTE\AdminLte2();
 $admin->title("Examples");
 
 $cnf=$admin->config();

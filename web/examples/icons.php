@@ -3,9 +3,9 @@ header('Content-Type: text/html; charset=utf-8');
 session_start();
 require __DIR__."/../../vendor/autoload.php";
 
-//use Admin\AdminLte;
+//use LTE\AdminLte;
 
-$admin = new Admin\AdminLte2();
+$admin = new LTE\AdminLte2();
 $admin->title("index.php");
 echo $admin->html();//
 ?>
@@ -26,7 +26,7 @@ echo $admin->html();//
     <div class="col-md-6 col-sm-6 col-xs-12" >
     <!-- Font awesome -->
     <?php
-    $box=new Admin\Box;
+    $box=new LTE\Box;
     $box->icon("fa fa-flag");
     $box->title("Font awesome");
     $box->small("...");
@@ -36,7 +36,7 @@ echo $admin->html();//
     <div class="col-md-6 col-sm-6 col-xs-12" >
     <!-- Ionis Icons -->
     <?php
-    $box=new Admin\Box;
+    $box=new LTE\Box;
     $box->icon("ion-ionic");
     $box->title("Ionis Icons");
     $box->small("... :)");
