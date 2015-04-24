@@ -9,14 +9,8 @@ $admin->title("Modals");
 echo $admin;//
 ?>
 <section class="content-header">
-  <h1>
-    Modals
-    <small>Pretty modal windows</small>
-  </h1>
-  <ol class="breadcrumb">
-    <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-    <li class="active">Here</li>
-  </ol>
+  <h1> Modals <small>https://almsaeedstudio.com/themes/AdminLTE/pages/UI/modals.html</small> </h1>
+
 </section>
 
 <section class="content">
@@ -25,13 +19,31 @@ echo $admin;//
 	<div class='col-md-6'>
 	<?php
 	$box=new Admin\Box;
+	$box->title('Modal types');
+	$htm=[];
+	$htm[]="<a href=#btn class='btn btn-default'>default</a> ";
+	$htm[]="<a href=#btn class='btn btn-default'>primary</a> ";
+	$htm[]="<a href=#btn class='btn btn-default'>danger</a> ";
+	$htm[]="<a href=#btn class='btn btn-default'>success</a> ";
+	$htm[]="<a href=#btn class='btn btn-default'>warning</a> ";
+	$htm[]="<a href=#btn class='btn btn-default'>info</a> ";
+	$box->body($htm);
+	echo $box;
+
+	$box=new Admin\Box;
 	$box->icon('fa fa-code');
 	$box->title('PHP');
 	
 	$htm=[];
 	$htm[]='<pre>';
 	$htm[]='&lt;?php'."\n";
-	$htm[]='new Admin\Modal("Titre de la fenetre modal","Body","Footer")';
+	$htm[]='$modal=new Admin\Modal;'."\n";
+	$htm[]='$modal->type("default");'."\n";
+	$htm[]='$modal->icon("string");'."\n";
+	$htm[]='$modal->title("string");'."\n";
+	$htm[]='$modal->body("string");'."\n";
+	$htm[]='$modal->footer("string");'."\n";
+	$htm[]='echo $modal;';
 	$htm[]='</pre>';
 
 	$box->body($htm);
@@ -45,22 +57,24 @@ echo $admin;//
 	$box->title('Javascript');
 	//$box->body();
 	//$box->footer();
-	echo $box->html('<pre>test</pre>','<a href=# class="btn btn-default">myModal.show()</a>');
+	echo $box->html('<pre>test</pre>','<a href="#btn" class="btn btn-default" onclick="$(\'#myModal\').modal(true);">$(\'#myModal\').modal(true);</a>');	
 	?>	
 	</div>
 </div>
 
 
 <?php
-$modal = new Admin\Modal("Titre de la fenetre modal","Body","Footer");
-$modal->id("modalwindow");
+$modal = new Admin\Modal;
+$modal->id("myModal");
 $modal->icon("fa fa-user");
+//$modal->body("<pre>".print_r($_SERVER,true)."</pre>");
+
 echo $modal;
 ?>
 </section>
 
 <script>
 $(function(){
-  $("#modalwindow").modal(true);
+  $("#myModal").modal(true);
 });
 </script>
