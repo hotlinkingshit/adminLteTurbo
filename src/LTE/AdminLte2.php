@@ -5,7 +5,7 @@
  * configuration done through json
  * @author jambonbill
  */
-namespace Admin;
+namespace LTE;
 
 /**
 * @brief Class providing adminlte2 skeleton

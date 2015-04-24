@@ -27,7 +27,7 @@
   </div><!-- /.modal -->
  */
 
-namespace Admin;
+namespace LTE;
 
 Class Modal
 {

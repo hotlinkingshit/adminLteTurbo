@@ -5,7 +5,7 @@
  */
 
 
-namespace Admin;
+namespace LTE;
 
 Class Timeline
 {

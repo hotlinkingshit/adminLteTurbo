@@ -1,9 +1,10 @@
 <?php
 /**
  * AdminLte2 Callout
+ * @author jambonbill
  */
 
-namespace Admin;
+namespace LTE;
 
 Class Callout
 {

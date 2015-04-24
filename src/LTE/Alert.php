@@ -4,7 +4,7 @@
  * https://almsaeedstudio.com/themes/AdminLTE/pages/widgets.html
  */
 
-namespace Admin;
+namespace LTE;
 
 Class Alert
 { 
