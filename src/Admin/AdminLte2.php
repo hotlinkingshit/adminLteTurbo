@@ -287,8 +287,8 @@ class AdminLte2
         $menu=$this->config->menu;
         
         if(!isset($menu)||!is_object($menu)){
-            throw new \Exception("Error : $this->config->menu must be a object", 1);
-            //return '';
+            //throw new \Exception("Error : $this->config->menu must be a object", 1);
+            return '';
         }
 
         $HTML=[];
@@ -302,7 +302,6 @@ class AdminLte2
             if(!$o)continue;
             if(isset($o->class))$class='class="'.$o->class.'"';
             if(isset($o->title))$title='title="'.$o->title.'"';
-            
             if(isset($o->sub))
             {
                 $HTML[]='<li class="treeview" '.$title.'>';
@@ -329,7 +328,6 @@ class AdminLte2
                 if(isset($o->url))$HTML[]='<a href="'.$this->path.$o->url.'">';               
                 if(isset($o->icon))$HTML[]='<i class="'.$o->icon.'"></i> ';
                 $HTML[]='<span>'.@$o->text.'</span>';
-                
                 //$HTML[]='<small class="label pull-right bg-green">new</small>';//small
                 if(isset($o->url))$HTML[]='</a>';
                 $HTML[]='</li>';
