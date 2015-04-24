@@ -20,9 +20,11 @@ class AdminLte2
     private $path='';// static path
     private $config=[];//admin config from json file
     private $title= 'AdminLte Turbo';// document title
-    private $DEBUG=false;
-    private $navbarCustomMenu='';//html
     
+    private $navbarCustomMenu='';//html
+    private $userPanel='';//html
+    private $DEBUG=false;
+
     /**
      * AdminLte Constructor
      * @param boolean $private [description]
@@ -39,21 +41,12 @@ class AdminLte2
                 die("Error: Invalid config.json");
             }else{
                 //find the correct path for assets
-                
-                //echo "<pre>";
-                //echo "realpath:".realpath('.')."\n";
-                //echo "__DIR__ :".realpath(__DIR__."/../web")."\n";
                 $diff=count(explode("/",realpath('.')))-count(explode("/",realpath(__DIR__."/../../web")));
                 //echo "diff=$diff\n";
-                $this->path=str_repeat("../", $diff);
-                //echo 
-                //echo "</pre>";
-                
+                $this->path=str_repeat("../", $diff);                
             }
         }else{
-            //die("<li>Error : config.json file not found in ".realpath("."));
-            throw new \Exception("Error : config.json file not found in ".realpath("."), 1);
-            
+            throw new \Exception("Error : config.json file not found in ".realpath("."), 1);            
         }
     }
 
@@ -67,21 +60,6 @@ class AdminLte2
     }
 
     /**
-     * Set app base path, what for ?
-     * @param  string $path [description]
-     * @return [type]       [description]
-     */
-    /*
-    public function path($path = '')
-    {
-        $this->path=$path;
-        //echo "<li>".$this->path;
-        return $this->path;
-    }
-    */
-   
-
-    /**
      * Set page title
      * @param  string $title [description]
      * @return [type]        [description]
@@ -91,10 +69,6 @@ class AdminLte2
         $this->title = $title;
         return $this->title;
     }
-
-
-
-
 
     /**
      * return the admin html
@@ -116,7 +90,6 @@ class AdminLte2
     {
         return $this->html();
     }
-
     
     /**
      * head
@@ -132,12 +105,11 @@ class AdminLte2
         $HTML[]='<meta charset="UTF-8">';
         $HTML[]="<title>".$this->title."</title>";
         $HTML[]="<meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>";
-        //$HTML[]="<link rel='shortcut icon' href='".$this->path."img/favicon.png' type='image/png' />";
-        if($this->config->favicon && is_file($this->config->favicon)){
+
+        if($this->config->favicon && is_file($this->path.$this->config->favicon)){
             $HTML[]='<link rel="shortcut icon" href="'.$this->path.$this->config->favicon.'">';    
         }
         
-
         // Css
         if(isset($this->config->css)){
             foreach ($this->config->css as $v) {
@@ -161,8 +133,6 @@ class AdminLte2
     public function body()
     {
         $HTML=[];
-        //todo, read it from the config file
-        //$skin='skin-blue';
         $class=[];
         //$class[]='skin-blue';
         if($this->config()->layout->skin)$class[]=$this->config()->layout->skin;
@@ -198,8 +168,9 @@ class AdminLte2
         }
 
         //$HTML[]='<a href="?" class="logo">';
-        //$HTML[]="<a href=? class=logo><img src='".$this->path."/img/logosocgen.png' width=180></i></a>";
-        $HTML[]="<a href=? class=logo>$title</a>";
+        if(isset($this->config->homeurl))$homeurl=$this->path.$this->config->homeurl;
+        else $homeurl='#';
+        $HTML[]="<a href='$homeurl' class=logo>$title</a>";
         //$HTML[]='</a>';
     
         // Header Navbar: style can be found in header.less -->
@@ -232,8 +203,28 @@ class AdminLte2
      */
     public function navbarCustomMenu($htm = '')
     {
+        if($htm&&is_array($htm)){
+            $htm=implode('',$htm);
+        }
+
         if($htm)$this->navbarCustomMenu=$htm;
         return $this->navbarCustomMenu;
+    }
+
+
+    /**
+     * Get/Set the menu user panel (first thing to appear in the left menu)
+     * @param  string $htm [description]
+     * @return [type]      [description]
+     */
+    public function userPanel($htm = '')
+    {
+        if($htm&&is_array($htm)){
+            $htm=implode('',$htm);
+        }
+
+        if($htm)$this->userPanel=$htm;
+        return $this->userPanel;
     }
 
     /**
@@ -263,25 +254,10 @@ class AdminLte2
         $HTML[]='<aside class="left-side sidebar-offcanvas">';
         // sidebar: style can be found in sidebar.less -->       
         $HTML[]='<section class="sidebar">';
-
-        //if ($this->session) {
-        if (true) {
-            // Sidebar user panel -->
-            $HTML[]='<div class="user-panel">';
-            // avatar
-            /*
-            $HTML[]='<div class="pull-left image">';
-            $HTML[]='<img src="'.$this->path.'img/avatar5.png" class="img-circle" alt="User Image" />';
-            $HTML[]='</div>';
-            */
-            //$HTML[]='<div class="pull-left info">';
-            //$HTML[]='<p>Hello, '.$userName.'</p>';
-            //$HTML[]='<a href="#"><i class="fa fa-circle text-success"></i> Online</a>';
-            //$HTML[]='</div>';
-            $HTML[]='</div>';
-        }
-
-
+        // Sidebar user panel -->
+        $HTML[]='<div class="user-panel">';
+        $HTML[]=$this->userPanel();
+        $HTML[]='</div>';
         // search field /
         if(isset($this->config->menusearch) && $this->config->menusearch){
             $HTML[]='<div class="sidebar-form input-group">';
@@ -295,7 +271,6 @@ class AdminLte2
         // sidebar menu: : style can be found in sidebar.less -->
         //$HTML[]= $this->menu();
         $HTML[]= $this->menu();
-
         $HTML[]='</section>';
         $HTML[]='</aside>';
         return implode("\n", $HTML);
@@ -311,21 +286,13 @@ class AdminLte2
         
         $menu=$this->config->menu;
         
-        //echo "<li>".count($menu);
-        //var_dump(count($this->config->menu));exit;
-        
-        //var_dump($this->config->menu);exit;
-        
-
         if(!isset($menu)||!is_object($menu)){
-            return '';
+            throw new \Exception("Error : $this->config->menu must be a object", 1);
+            //return '';
         }
 
         $HTML=[];
         $HTML[]='<ul class="sidebar-menu">';
-
-        // debug
-        //$HTML[]='<li class="header">this->path : '.$this->path.'</li>';    
         
         foreach(@$menu as $name=>$o){
             
@@ -348,9 +315,9 @@ class AdminLte2
                 $HTML[]='<ul class="treeview-menu">';
                 foreach($o->sub as $obj){
                     $HTML[]='<li>';
-                    if(!isset($obj->url))$obj->url='#';
-                    if(!isset($obj->icon))$obj->icon='';
-                    $HTML[]='<a href="'.$obj->url.'"><i class="'.$obj->icon.'"></i> <span>'.$obj->text.'</span></a>';
+                    if(isset($obj->url))$HTML[]="<a href='".$this->path.$obj->url."'>";
+                    if(isset($obj->icon))$HTML[]="<i class='".$obj->icon."'></i> ";
+                    $HTML[]='<span>'.$obj->text.'</span></a>';
                     $HTML[]='</li>';
                 }
                 $HTML[]='</ul>';
@@ -358,27 +325,14 @@ class AdminLte2
             }
             else
             {
-                
                 $HTML[]='<li '.$class.' '.$title.'>';
-                
-                //if(!isset($o->icon))$o->icon='';
-                /*
-                if(isset($o->class)){
-                    $HTML[]='<li class="'.$o->class.'">';    
-                }else{
-                        
-                }
-                */
-                if(isset($o->url))$HTML[]='<a href="'.$this->path.$o->url.'">';
-                
+                if(isset($o->url))$HTML[]='<a href="'.$this->path.$o->url.'">';               
                 if(isset($o->icon))$HTML[]='<i class="'.$o->icon.'"></i> ';
-                $HTML[]='<span>'.$o->text.'</span>';
+                $HTML[]='<span>'.@$o->text.'</span>';
                 
                 //$HTML[]='<small class="label pull-right bg-green">new</small>';//small
                 if(isset($o->url))$HTML[]='</a>';
-                
                 $HTML[]='</li>';
-                
             }
         }
         $HTML[]='</ul>';
