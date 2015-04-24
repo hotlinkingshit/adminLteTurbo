@@ -7,7 +7,7 @@ require __DIR__."/../../vendor/autoload.php";
 $admin = new Admin\AdminLte2();
 $admin->title("Login");
 $admin->config()->menusearch=false;//disable menu search
-$admin->config()->menu=false;//unset the global menu
+$admin->config()->menu=(object)[];//unset the global menu
 echo $admin->html();//
 ?>
 
