@@ -41,20 +41,38 @@ echo $admin;//
     
     </div><!-- /.col -->
     
-    <div class="col-md-4 col-sm-6 col-xs-12">
+    <div class="col-md-6 col-sm-6 col-xs-12">
     <?php
-    /*
-    $box= new Admin\Box;
-    $box->title("Layout");
-    $box->body("Admin layout can defined in the config, and/or changed with javascript.<br />See dist/js/demo.js");
+
+    $box= new LTE\Box;
+    $box->title("GIT Install");
+    
+    $htm=[];
+    $htm[]="<pre>";
+    $htm[]="git clone https://github.com/jambonbill/adminLteTurbo.git\n";
+    $htm[]="composer update\n";
+    $htm[]="</pre>";
+
+    $box->body($htm);
     echo $box;
     
 
-    $box= new Admin\Box;
-    $box->title("Examples");
-    $box->body("The php classes provide helpers to build widgets very easily.<br />Examples :<pre></pre>");
+    $box= new LTE\Box;
+    $box->title("Get started");
+    $htm=[];
+    $htm[]="<pre>\n";
+    $htm[]="&lt;?php\n";
+    $htm[]="header('Content-Type: text/html; charset=utf-8');\n";
+    $htm[]="require __DIR__.'/../vendor/autoload.php';\n";
+    $htm[]="\n";
+    $htm[]="\$admin = new LTE\AdminLte2();\n";
+    $htm[]="\$admin->title('My title');\n";
+    $htm[]="\n";
+    $htm[]="echo \$admin;\n";
+    $htm[]="</pre>";
+    $box->body($htm);
     echo $box;
-    */
+    
     ?>
 
     </div><!-- /.col -->
