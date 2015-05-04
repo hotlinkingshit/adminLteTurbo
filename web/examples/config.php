@@ -4,7 +4,7 @@ session_start();
 
 require __DIR__."/../../vendor/autoload.php";
 
-$admin = new Admin\AdminLte2();
+$admin = new LTE\AdminLte2();
 
 //config override example
 $cnf=$admin->config();
@@ -57,7 +57,7 @@ echo $admin->html();//
 //$admin->bidule("html");
 
 
-//echo new Admin\Contentheader('title','icon','small');
+//echo new LTE\Contentheader('title','icon','small');
 ?>
 <section class="content-header">
   <h1><i class='fa fa-list'></i> Config <small>Configuration</small></h1>
@@ -70,7 +70,7 @@ echo $admin->html();//
     <div class="col-md-6 col-sm-6 col-xs-12" >
     <?php
     // Config file
-    $box=new Admin\Box;
+    $box=new LTE\Box;
     $box->title("Global configuration file");
     $box->icon("fa fa-bolt");
     $htm=[];
@@ -86,7 +86,7 @@ echo $admin->html();//
     echo $box->html($htm,"<button class='btn btn-default'>Ok</button>");
     
     // Layout
-    $box=new Admin\Box;
+    $box=new LTE\Box;
     $box->type("solid");
     $box->title("Admin layout");
     $htm=[];
@@ -105,7 +105,7 @@ echo $admin->html();//
     echo $box->html($htm,$foot);
     
     // Skins
-    $box=new Admin\Box;
+    $box=new LTE\Box;
     $box->type("solid");
     $box->title("Admin skins");
     $htm=[];
@@ -127,7 +127,7 @@ echo $admin->html();//
     <div class="col-md-6 col-sm-6 col-xs-12" >
      
       <?php
-      $box=new Admin\Box;
+      $box=new LTE\Box;
       $box->title("\$admin->config()");
       $box->icon("fa fa-wrench");
       $box->collapsed(true);
