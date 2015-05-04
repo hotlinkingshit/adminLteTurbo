@@ -6,5 +6,6 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'LTE' => array($baseDir . '/src'),
     'Admin' => array($baseDir . '/src'),
 );
