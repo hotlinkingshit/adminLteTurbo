@@ -43,7 +43,7 @@ echo $admin;//
     
     <div class="col-md-6 col-sm-6 col-xs-12">
     <?php
-
+    // GIT INSTALL
     $box= new LTE\Box;
     $box->title("GIT Install");
     
@@ -51,6 +51,19 @@ echo $admin;//
     $htm[]="<pre>";
     $htm[]="git clone https://github.com/jambonbill/adminLteTurbo.git\n";
     $htm[]="composer update\n";
+    $htm[]="</pre>";
+
+    $box->body($htm);
+    echo $box;
+
+
+    // COMPOSER INSTALL
+    $box= new LTE\Box;
+    $box->title("Composer Install");
+    
+    $htm=[];
+    $htm[]="<pre>";
+    $htm[]="not yet...\n";
     $htm[]="</pre>";
 
     $box->body($htm);
