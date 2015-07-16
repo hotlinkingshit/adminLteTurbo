@@ -314,7 +314,14 @@ class AdminLte2
                 $HTML[]='<ul class="treeview-menu">';
                 foreach($o->sub as $obj){
                     $HTML[]='<li>';
-                    if(isset($obj->url))$HTML[]="<a href='".$this->path.$obj->url."'>";
+                    if(isset($obj->url)){
+                        if(preg_match("/^(http|ftp)/",$obj->url)){
+                            $HTML[]="<a href='".$obj->url."'>";
+                        }else{
+                            $HTML[]="<a href='".$this->path.$obj->url."'>";
+                        }
+                    }
+                    
                     if(isset($obj->icon))$HTML[]="<i class='".$obj->icon."'></i> ";
                     $HTML[]='<span>'.$obj->text.'</span></a>';
                     $HTML[]='</li>';
