@@ -81,6 +81,11 @@
 			"text":"links",
 			"icon":"fa fa-external-link",
 			"sub":[{
+				"text":"jambonbill.org",
+				"icon":"fa fa-external-link",
+				"url":"http://www.jambonbill.org",	
+				"target":"_blank"
+				},{
 				"text":"Github",
 				"icon":"fa fa-external-link",
 				"url":"https://github.com/jambonbill/adminLteTurbo",	
