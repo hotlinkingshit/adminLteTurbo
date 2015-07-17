@@ -46,6 +46,7 @@ echo $admin;//
     // GIT INSTALL
     $box= new LTE\Box;
     $box->title("GIT Install");
+    $box->icon("fa fa-git");
     
     $htm=[];
     $htm[]="<pre>";
