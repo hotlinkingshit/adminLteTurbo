@@ -3,10 +3,8 @@ header('Content-Type: text/html; charset=utf-8');
 session_start();
 require __DIR__."/../../vendor/autoload.php";
 
-//use LTE\AdminLte;
-
 $admin = new LTE\AdminLte2();
-$admin->title("index.php");
+$admin->title("Icons");
 echo $admin->html();//
 ?>
 <section class="content-header">
@@ -79,6 +77,6 @@ echo $admin->html();//
         echo "</div>";
     }
     ?>
-    </div>
-  </div><!-- /.row -->                    
+    </div> 
+gi t</div><!-- /.row -->                    
 </section>
