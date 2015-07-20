@@ -13,8 +13,8 @@ echo $admin->html();//
 ?>
 <section class="content-header">
   <h1>
-    Page Header
-    <small>Optional description</small>
+    Widgets
+    <small>https://almsaeedstudio.com/themes/AdminLTE/pages/widgets.html</small>
   </h1>
   <ol class="breadcrumb">
     <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
@@ -29,37 +29,44 @@ echo $admin->html();//
             <div class="col-md-3 col-sm-6 col-xs-12">
             
             <?php
-            $infobox=new LTE\Infobox();
-            $infobox->color("aqua");
-            $infobox->icon("fa fa-cog");
-            $infobox->title("rand(1,100)");
-            $infobox->value(rand(1,100));
-            echo $infobox;
+            $o=new LTE\Infobox();
+            $o->color("aqua");
+            $o->icon("fa fa-cog");
+            $o->title("rand(1,100)");
+            $o->value(rand(1,100));
+            echo $o;
             ?>
-            
+<pre>
+$o=new LTE\Infobox();
+$o->color("aqua");
+$o->icon("fa fa-cog");
+$o->title("rand(1,100)");
+$o->value(rand(1,100));
+echo $o;
+</pre>
             </div><!-- /.col -->
             
             <div class="col-md-3 col-sm-6 col-xs-12">
             <?php
-            $infobox->icon("fa fa-flag");
-            $infobox->color("green");
-            echo $infobox;
+            $o->icon("fa fa-flag");
+            $o->color("green");
+            echo $o;
             ?>            
             </div><!-- /.col -->
             
             <div class="col-md-3 col-sm-6 col-xs-12">           
             <?php
-            $infobox->icon("fa fa-files-o");
-            $infobox->color("yellow");
-            echo $infobox;
+            $o->icon("fa fa-files-o");
+            $o->color("yellow");
+            echo $o;
             ?>            
             </div><!-- /.col -->
             
             <div class="col-md-3 col-sm-6 col-xs-12">
             <?php
-            $infobox->icon("fa fa-star-o");
-            $infobox->color("red");
-            echo $infobox;
+            $o->icon("fa fa-star-o");
+            $o->color("red");
+            echo $o;
             ?>            
             </div><!-- /.col -->
           </div><!-- /.row -->                    
@@ -69,14 +76,25 @@ echo $admin->html();//
           <div class="row">
             <div class="col-md-3 col-sm-6 col-xs-12">
             <?php
-            $infobox=new LTE\Infobox();
-            $infobox->classname("info-box bg-aqua");
-            //$infobox->color("aqua");
-            $infobox->icon("fa fa-cog");
-            $infobox->title("rand(1,100)");
-            $infobox->value(rand(1,100));
-            echo $infobox;
+            $o=new LTE\Infobox();
+            $o->classname("info-box bg-aqua");
+            $o->icon("fa fa-cog");
+            $o->title("rand(1,100)");
+            $o->value(rand(1,100));
+            $o->progressValue(rand(1,100));
+            $o->description("Lorem ipsum dolor sit amet");
+            echo $o;
             ?>
+<pre>
+$o=new LTE\Infobox();
+$o->classname("info-box bg-aqua");
+$o->icon("fa fa-cog");
+$o->title("rand(1,100)");
+$o->value(rand(1,100));
+$o->progressValue(rand(1,100));
+$o->description("Lorem ipsum dolor sit amet");
+echo $o;
+</pre>
             </div><!-- /.col -->
             <div class="col-md-3 col-sm-6 col-xs-12">
               <div class="info-box bg-green">
@@ -130,57 +148,5 @@ echo $admin->html();//
 
           <!-- Small boxes (Stat box) -->
           
-          <div class="row">
-            <div class="col-lg-3 col-xs-6">
-                <!-- small box -->
-                <?php
-                $smallbox=new LTE\Smallbox();
-                $smallbox->color("aqua");
-                $smallbox->icon("fa fa-user");
-                $smallbox->title("rand(10,100)");
-                $smallbox->value(rand(10,100));
-                $smallbox->url('http://www.pouet.net/');
-                echo $smallbox;
-                ?>
-            </div><!-- ./col -->
-            
-            <div class="col-lg-3 col-xs-6">
-              <!-- small box -->
-              <?php
-                $smallbox=new LTE\Smallbox();
-                $smallbox->color("green");
-                $smallbox->icon("fa fa-user-plus");//ion ion-pie-graph
-                $smallbox->title("rand(10,100)");
-                $smallbox->value(rand(10,100));
-                $smallbox->url('http://www.pouet.net/');
-                echo $smallbox;
-                ?>
-            </div><!-- ./col -->
-
-            <div class="col-lg-3 col-xs-6">
-              <!-- small box  -->
-              <?php
-                $smallbox=new LTE\Smallbox();
-                $smallbox->color("yellow");
-                $smallbox->icon("ion ion-person-add");
-                $smallbox->title("rand(10,100)");
-                $smallbox->value(rand(10,100));
-                $smallbox->url('http://www.pouet.net/');
-                echo $smallbox;
-                ?>
-            </div><!-- ./col -->
-            <div class="col-lg-3 col-xs-6">
-              <!-- small box -->
-              <?php
-                $smallbox=new LTE\Smallbox();
-                $smallbox->color("red");
-                $smallbox->icon("ion ion-pie-graph");
-                $smallbox->title("rand(10,100)");
-                $smallbox->value(rand(10,100));
-                $smallbox->url('http://www.pouet.net/');
-                echo $smallbox;
-                ?>
-            </div><!-- ./col -->
-          </div><!-- /.row -->
 
         </section>
