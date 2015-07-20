@@ -27,6 +27,8 @@ class Infobox
     private $title='box-title';
     private $value='';
     private $icon='';
+    private $description='';
+    private $progressValue='';
     
     
     public function __construct ()
@@ -84,6 +86,23 @@ class Infobox
         return $this->value;
     }
 
+    public function progressValue($str = '')
+    {
+        if ($str) {
+            $this->progressValue=$str;
+        }
+        return $this->progressValue;
+    }
+
+    public function description($str = '')
+    {
+        if ($str) {
+            $this->description=$str;
+        }
+        return $this->description;
+    }
+    
+
     /**
      * Box icon class. Use font awesome names, ex: 'fa fa-user'
      * You can pass multiple icons in a array, ex: ['fa fa-user','fa fa-file']
@@ -129,6 +148,10 @@ class Infobox
         }else{
             $HTML[]='<span class="info-box-text">'.$this->title().'</span>';
             $HTML[]='<span class="info-box-number">'.$this->value().'</span>';
+            
+            if($this->progressValue())$HTML[]='<div class="progress"><div class="progress-bar" style="width: '.$this->progressValue().'%"></div></div>';
+            if($this->description())$HTML[]='<span class="progress-description">'.$this->description().'</span>';
+
         }
         $HTML[]='</div>';//<!-- /.info-box-content -->';    
         
