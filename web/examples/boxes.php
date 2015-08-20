@@ -52,6 +52,7 @@ echo $admin->html();//
     $box->title("Php");
     $box->type("solid");
     $box->collapsable(true);
+    $box->addClass('hidden-xs');
     $btns ="<button class=\"btn btn-box-tool\" title='Example'><i class='fa fa-comments'></i></button>";
     $btns ="<button class=\"btn btn-box-tool\" title='Example'><i class='fa fa-save'></i></button>";
     $btns ="<span data-toggle='tooltip' title='' class='badge bg-yellow' data-original-title='3 New Messages'>3</span>";
@@ -66,6 +67,7 @@ echo $admin->html();//
     $htm[]='$box->title("box title");'."\n";
     $htm[]='$box->id("mybox");'."\n";
     $htm[]='$box->collapsabe(true);'."\n";
+    $htm[]='$box->addClass("hidden-xs");'."\n";
     $htm[]='$box->removable(false);'."\n";
     $htm[]='echo $box'."\n";
     $htm[]='</pre>';
