@@ -16,6 +16,7 @@ class Box
     private $icon='';
     private $iconUrl='';
     private $color='';
+    private $class='';
     private $style='';
     private $title='box-title';
     private $small='';//
@@ -225,6 +226,14 @@ class Box
         return $this->removable;
     }
 
+    public function addClass($str = '')
+    {
+        if ($str) {
+            $this->class=$str;
+        }
+        return $this->class;
+    }
+
     public function style($style = '')
     {
         if ($style) {
@@ -260,6 +269,7 @@ class Box
         $class[]='box';
         $class[]='box-'.$this->type();
         if($this->collapsed)$class[]='collapsed-box';
+        if($this->addClass())$class[]=$this->addClass();
         
         $HTML[]='<div class="'.implode(" ",$class).'" '.$STYLE.' id="'.$this->id().'">';// box-solid
 
