@@ -34,9 +34,9 @@ Class Modal
     private $id ='myModal';
     private $type ='default';
     private $icon ='fa fa-times';
-    private $title='modal-title';
-    private $body ='modal-body';
-    private $footer ='<button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>';
+    private $title='';
+    private $body ='';
+    private $footer ='';
 
     public function __construct ($title = '', $body = '', $footer='')
     {
