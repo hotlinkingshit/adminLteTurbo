@@ -107,3 +107,6 @@ echo $admin->html();//
 
   </div>   <!-- /.row -->
 </section>
+<?php
+$admin->footer("<a href='http://adminlteturbo.jambonbill.org'>AdminLteTurbo</a>");//define footer
+$admin->end();

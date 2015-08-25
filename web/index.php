@@ -93,9 +93,6 @@ echo $admin;//
     
   </div><!-- /.row -->                    
 </section>
-
-<script>
-$(function(){
-  console.log('ready');
-});
-</script>
+<?php
+$admin->footer("<a href='http://adminlteturbo.jambonbill.org'>AdminLteTurbo</a>");//define footer
+$admin->end();

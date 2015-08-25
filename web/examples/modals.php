@@ -78,3 +78,7 @@ $(function(){
   $("#myModal").modal(true);
 });
 </script>
+
+<?php
+$admin->footer("<a href='http://adminlteturbo.jambonbill.org'>AdminLteTurbo</a>");//define footer
+$admin->end();

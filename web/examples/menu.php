@@ -62,6 +62,7 @@ echo $admin->html();//
   </div>
 
   </div>   <!-- /.row -->
+
 </section>
 
 <script>
@@ -71,3 +72,7 @@ $(function(){
   });
 });
 </script>
+
+<?php
+$admin->footer("<a href='http://adminlteturbo.jambonbill.org'>AdminLteTurbo</a>");//define footer
+$admin->end();
