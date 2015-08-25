@@ -227,21 +227,7 @@ class AdminLte2
         return $this->userPanel;
     }
 
-    /**
-     * Adminlte2 Footer, this one need some tweaking
-     * @return [type] [description]
-     */
-    public function footer()
-    {
-        $HTML=[];
-        $HTML[]="<footer class=\"main-footer\">";
-        //<!-- To the right -->
-        $HTML[]="<div class=\"pull-right hidden-xs\">Anything you want</div>";        
-        //<!-- Default to the left --> 
-        $HTML[]="<strong>Copyright © 2015 <a href=#>Company</a>.</strong> All rights reserved.";
-        $HTML[]="</footer>";
-        return implode("\n", $HTML);
-    }
+
 
 
     /**
@@ -364,4 +350,43 @@ class AdminLte2
         }
         return implode("\n", $HTML);
     }   
+
+    
+    
+    private $footer;
+    /**
+     * Define footer. The footer is displayed only when "end()" is called
+     * @param  string $body [description]
+     * @return [type]       [description]
+     */
+    public function footer($body='')
+    {
+        if ($body) {
+            $HTML=[];    
+            $HTML[]='<footer class="main-footer">';
+            //$HTML[]='<div class="pull-right hidden-xs">';
+            //$HTML[]='<b>Version</b> 2.3.0';
+            //$HTML[]='</div>';
+            $HTML[]=$body;
+            $HTML[]='</footer>';
+            $this->footer=implode("\n",$HTML);
+        }
+        return $this->footer;
+    }
+
+    /**
+     * Properly finish the html document and end the script
+     * @return [type] [description]
+     */
+    public function end()
+    {
+        $HTML=[];
+        $HTML[]="</aside>";// end aside class="right-side"
+        $HTML[]=$this->footer();
+        $HTML[]="</div>";
+        $HTML[]="</body>";
+        $HTML[]="</html>";
+        echo implode("\n",$HTML);
+        exit;
+    }
 }
