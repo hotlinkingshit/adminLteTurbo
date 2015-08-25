@@ -18,10 +18,10 @@ class Box
     private $color='';
     private $class='';
     private $style='';
-    private $title='box-title';
+    private $title='';
     private $small='';//
     private $boxTools='';//(mini top tray on the right)
-    private $body='box-body';
+    private $body='';
     private $body_padding=true;//box-body no-padding
     private $footer='';
     private $collapsable=false;
