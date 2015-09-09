@@ -272,17 +272,13 @@ class AdminLte2
     public function menu($json = '')
     {
         
-        $menu=$this->config->menu;
-        
-        if(!isset($menu)||!is_object($menu)){
-            //throw new \Exception("Error : $this->config->menu must be a object", 1);
-            return '';
-        }
+        if(!isset($this->config->menu))return'';
+        if(!is_object($this->config->menu))return '';
 
         $HTML=[];
         $HTML[]='<ul class="sidebar-menu">';
         
-        foreach(@$menu as $name=>$o){
+        foreach(@$this->config->menu as $name=>$o){
             
             $title='';
             $class='';
