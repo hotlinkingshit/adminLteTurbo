@@ -43,7 +43,9 @@ class AdminLte2
                 //find the correct path for assets
                 $diff=count(explode("/",realpath('.')))-count(explode("/",realpath(__DIR__."/../../web")));
                 //echo "diff=$diff\n";
-                $this->path=str_repeat("../", $diff);                
+                $this->path=str_repeat("../", $diff);
+
+                if(isset($this->config->title))$this->title=$this->config->title;
             }
         }else{
             throw new \Exception("Error : config.json file not found in ".realpath("."), 1);            
