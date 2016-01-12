@@ -68,6 +68,7 @@ Class Modal
     
     public function body($str = ''){
         if ($str) {
+          if(is_array($str))$str=implode('',$str);
           $this->body=$str;
         }
         return $this->body;
@@ -75,6 +76,7 @@ Class Modal
     
     public function footer($str = ''){
         if ($str) {
+          if(is_array($str))$str=implode('',$str);
           $this->footer=$str;
         }
         return $this->footer;
