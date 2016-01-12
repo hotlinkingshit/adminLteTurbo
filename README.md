@@ -10,7 +10,9 @@ Demo : [adminlteturbo.jambonbill.org](http://adminlteturbo.jambonbill.org)
 - Get rid of google fonts (china)
 - Search plugin
 - Box class
-
+- Add jquery.tablesorter
+- Add jquery.cookie
+- Upgrade font awesome
 
 ## Disclaimer
 I'm **NOT** the author of [AdminLte](https://almsaeedstudio.com), and i dont pretend to be :)
