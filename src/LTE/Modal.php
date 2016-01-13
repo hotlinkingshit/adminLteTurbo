@@ -36,6 +36,7 @@ Class Modal
     private $icon ='fa fa-times';
     private $title='';
     private $body ='';
+    private $style ='';
     private $footer ='';
 
     public function __construct ($title = '', $body = '', $footer='')
@@ -52,6 +53,15 @@ Class Modal
         return $this->id;
     }
     
+    //ex : width:720px
+    public function style($str='')
+    {
+        if ($str) {
+          $this->style=$str;
+        }
+        return $this->style;
+    }
+
     public function type($str = ''){
         if ($str) {
           $this->type=$str;
@@ -94,23 +104,26 @@ Class Modal
         $HTML=[];
         
         $HTML[]='<div class="modal modal-'.$this->type().'" id="'.$this->id.'">';
+        
+        if($this->style){
+            $htm[]='<div class="modal-dialog" style="'.$this->style.'">';    
+        }else{
+            $htm[]='<div class="modal-dialog">';
+        }
+
         $HTML[]='<div class="modal-dialog">';
         $HTML[]='<div class="modal-content">';
         
         $HTML[]='<div class="modal-header">';
-          $HTML[]='<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>';
-          $HTML[]='<h4 class="modal-title">';
-          if($this->icon)$HTML[]='<i class="'.$this->icon().'"></i> ';
-          $HTML[]=$this->title().'</h4>';
+        $HTML[]='<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>';
+        $HTML[]='<h4 class="modal-title">';
+        if($this->icon)$HTML[]='<i class="'.$this->icon().'"></i> ';
+        $HTML[]=$this->title().'</h4>';
         $HTML[]='</div>';
         
         $HTML[]='<div class="modal-body">'.$this->body().'</div>';
         
-        $HTML[]='<div class="modal-footer">';
-          //$HTML[]='<button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>';
-          //$HTML[]='<button type="button" class="btn btn-primary">Save changes</button>';
-          $HTML[]=$this->footer();
-        $HTML[]='</div>';
+        $HTML[]='<div class="modal-footer">'.$this->footer().'</div>';
         
         $HTML[]='</div>';//<!-- /.modal-content -->
         $HTML[]='</div>';//<!-- /.modal-dialog -->
