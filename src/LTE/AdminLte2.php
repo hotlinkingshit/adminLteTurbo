@@ -20,6 +20,7 @@ class AdminLte2
     private $path='';// static path
     private $config=[];//admin config from json file
     private $title= 'AdminLte Turbo';// document title
+    private $lang= 'en';//$_SERVER['HTTP_ACCEPT_LANGUAGE']
     
     private $navbarCustomMenu='';//html
     private $userPanel='';//html
@@ -50,6 +51,8 @@ class AdminLte2
         }else{
             throw new \Exception("Error : config.json file not found in ".realpath("."), 1);            
         }
+
+        $this->lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);// set language
     }
 
     // Get/Set config
@@ -102,7 +105,7 @@ class AdminLte2
     {
         $HTML=[];
         $HTML[]='<!DOCTYPE html>';
-        $HTML[]='<html lang="en">';
+        $HTML[]='<html lang="en">';//$this->lang() ?
         $HTML[]='<head>';
         $HTML[]='<meta charset="UTF-8">';
         $HTML[]="<title>".$this->title."</title>";
