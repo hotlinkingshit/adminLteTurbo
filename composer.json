@@ -1,5 +1,10 @@
 {
-	"name":"AdminLteTurbo",
+	"name":"lteTurbo/lteTurbo",
+    "type": "library",
+    "description": "AdminLTE Library for PHP",
+    "keywords": ["admin","lte","bootstrap"],
+    "homepage": "http://adminlteturbo.jambonbill.org",
+    "license": "MIT",
 	"authors": [
         {
             "name": "Jambonbill",
