@@ -140,7 +140,20 @@ class AdminLte2
         return implode("\n", $HTML);
     }
 
+    
+    /**
+     * GET/SET config meta's
+     * @return [type] [description]
+     */
+    public function meta($meta=[])
+    {
+        if (isset($meta)&&is_array($meta)) {
+            $this->config->meta=$meta;
+        }
+        return $this->config->meta;
+    }
 
+    
     /**
      * body
      * bring the headers, and initial assets
