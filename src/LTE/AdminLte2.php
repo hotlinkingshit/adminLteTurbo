@@ -108,6 +108,17 @@ class AdminLte2
         $HTML[]='<html lang="en">';//$this->lang() ?
         $HTML[]='<head>';
         $HTML[]='<meta charset="UTF-8">';
+        
+        if (isset($this->config->meta)&&is_array($this->config->meta)) {
+            foreach($this->config->meta as $meta){
+                $values=[];
+                foreach($meta as $k=>$v) {
+                    $values[]=$k.'="'.$v.'"';
+                }
+                $HTML[]="<meta ".implode(' ',$values).">";
+            }
+        }
+
         $HTML[]="<title>".$this->title."</title>";
         $HTML[]="<meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>";
 
