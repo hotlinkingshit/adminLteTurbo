@@ -2,117 +2,42 @@
 	"title":"AdminLte Turbo",
 	"homeurl":"index.php",
 	"favicon":"img/favicon.png",
-	"menusearch":true,
+	"menusearch":false,
+	"footer":"<a href='http://www.jambonbill.org' title='jambonbill.org'>jambonbill.org</a>",
+	"meta":[
+		{
+			"name":"description",
+			"content":"AdminLTE Turbo"
+		},{
+			"property":"og:image",
+			"content":"http://www.thejazzist.nu/wp-content/uploads/2016/03/pattern.png"
+		},{
+			"name":"twitter:title",
+			"content":"AdminLTE TURBO"
+		},{
+			"name":"keywords",
+			"content":"AdminLTE, jambonbill, internet, lol"
+		}
+	],
 	"css":[
 		"bootstrap/css/bootstrap.min.css",
     	"dist/css/font-awesome/4.3.0/font-awesome.min.css",
 	    "dist/css/ionicons/2.0.0/ionicons.min.css",
-    	"dist/css/AdminLTE.min.css",
+    	"dist/css/AdminLTE.css",
     	"dist/css/skins/_all-skins.min.css"
 	],
 	"js":[
-	    "plugins/jQuery/jQuery-2.1.3.min.js",
+	    "dist/plugins/jQuery/jquery-3.2.1.min.js",
+	    "dist/plugins/popper.js/popper.min.js",
     	"bootstrap/js/bootstrap.min.js",
     	"dist/js/app.min.js"
 	],
 	"layout":{
-		"skin":"skin-red",
+		"skin":"skin-black",
 		"fixed":false,
 		"layout-boxed":false,
 		"sidebar-collapse":false
 	},
-	"menu":{
-		
-		"header":{
-	   		"text":"Menu",
-	   		"class":"header"
-	   },
-	   
-	   
+	"menu":"menu.json"
 
-	   "home":{
-	      "text":"Home",
-	      "title":"Sweet home",
-	      "icon":"fa fa-home",
-	      "url":"index.php"
-	   },
-	   
-	   "examples":{  
-	      "text":"Examples",
-	      "icon":"fa fa-users",
-	      "sub":[{
-			"text":"Login page",
-	      	"icon":"fa fa-sign-in",
-	      	"url":"./login"
-	      },{
-			"text":"Menu",
-	      	"icon":"fa fa-list",
-	      	"url":"examples/menu.php"
-	      },{
-			"text":"Boxes",
-	      	"icon":"fa fa-list-alt",
-	      	"url":"examples/boxes.php"
-	      },{  
-			"text":"Alerts",
-	      	"icon":"fa fa-warning",
-	      	"url":"examples/alerts.php"
-	      },{  
-			"text":"Modals",
-	      	"icon":"fa fa-exclamation-circle",
-	      	"url":"examples/modals.php"
-	      },{  
-	      	"text":"Widgets",
-	      	"icon":"fa fa-home",
-	      	"url":"examples/widgets.php"
-	      },{  
-	      	"text":"Timeline",
-	      	"icon":"fa fa-clock-o",
-	      	"url":"examples/timeline.php"
-	      },{  
-	      	"text":"Icons",
-	      	"icon":"fa fa-flag",
-	      	"url":"examples/icons.php"
-	      }
-
-	      ]
-	   },
-		"links":
-		{
-			"text":"links",
-			"icon":"fa fa-external-link",
-			"sub":[{
-				"text":"jambonbill.org",
-				"icon":"fa fa-external-link",
-				"url":"http://www.jambonbill.org",	
-				"target":"_blank"
-				},{
-				"text":"Github",
-				"icon":"fa fa-external-link",
-				"url":"https://github.com/jambonbill/adminLteTurbo",	
-				"target":"_blank"
-				},{
-				"text":"Bootstrap",
-				"icon":"fa fa-external-link",
-				"url":"http://getbootstrap.com/",	
-				"target":"_blank"
-				},{
-				"text":"AdminLTE",
-				"icon":"fa fa-external-link",
-				"title":"It's a surprise !",
-				"icon":"fa fa-youtube-play",
-				"url":"https://almsaeedstudio.com/",
-				"target":"_blank"
-			}]
-		},
-		"separator":{
-	   		"text":"Separator",
-	   		"class":"header"
-	   },
-	   "logout":{	      
-	      "text":"Logout",
-	      "id":"btn_logout",
-	      "icon":"fa fa-sign-out",
-	      "url":"login/logout.php"
-	   }
-	}
 }

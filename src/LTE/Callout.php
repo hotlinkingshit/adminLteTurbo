@@ -20,6 +20,24 @@ Class Callout
         //echo "Youpi !!";
     }
 
+    public function type($str)
+    {
+        if($str)$this->type=$str;
+        return $this->type;
+    }
+    
+    public function title($str)
+    {
+        if($str)$this->title=$str;
+        return $this->title;
+    }
+    
+    public function body($str)
+    {
+        if($str)$this->body=$str;
+        return $this->body;
+    }
+
     public function html()
     {
         $HTML=[];

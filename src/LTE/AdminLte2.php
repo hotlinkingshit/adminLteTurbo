@@ -19,9 +19,10 @@ class AdminLte2
      */
     private $path='';// static path
     private $config=[];//admin config from json file
-    private $title= 'AdminLte Turbo';// document title
+    private $title= 'title';// document title
+    private $headHtml= '';
     private $lang= 'en';//$_SERVER['HTTP_ACCEPT_LANGUAGE']
-    
+
     private $navbarCustomMenu='';//html
     private $userPanel='';//html
     private $DEBUG=false;
@@ -34,6 +35,7 @@ class AdminLte2
     {
         // get the config file. it must be located next to the class
         $configjson=__DIR__."/config.json";
+
         if(is_file($configjson)){
             $string = file_get_contents($configjson);
             $this->config=json_decode($string);
@@ -45,17 +47,21 @@ class AdminLte2
                 $diff=count(explode("/",realpath('.')))-count(explode("/",realpath(__DIR__."/../../web")));
                 //echo "diff=$diff\n";
                 $this->path=str_repeat("../", $diff);
-
-                if(isset($this->config->title))$this->title=$this->config->title;
             }
         }else{
-            throw new \Exception("Error : config.json file not found in ".realpath("."), 1);            
+            throw new \Exception("Error : config.json file not found in ".realpath("."), 1);
         }
 
+
         $this->lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);// set language
+        if($this->lang!='fr')$this->lang='en';
     }
 
-    // Get/Set config
+    /**
+     * Get/Set config
+     * @param  array  $config [description]
+     * @return [type]         [description]
+     */
     public function config($config=[])
     {
         if($config){
@@ -63,6 +69,17 @@ class AdminLte2
         }
         return $this->config;
     }
+
+
+    /**
+     * Return detected language
+     * @return [type] [description]
+     */
+    public function lang()
+    {
+        return $this->lang;
+    }
+
 
     /**
      * Set page title
@@ -95,52 +112,8 @@ class AdminLte2
     {
         return $this->html();
     }
-    
-    /**
-     * head
-     * bring the headers, and initial assets
-     * @return [type] [description]
-     */
-    public function head()
-    {
-        $HTML=[];
-        $HTML[]='<!DOCTYPE html>';
-        $HTML[]='<html lang="en">';//$this->lang() ?
-        $HTML[]='<head>';
-        $HTML[]='<meta charset="UTF-8">';
-        
-        if (isset($this->config->meta)&&is_array($this->config->meta)) {
-            foreach($this->config->meta as $meta){
-                $values=[];
-                foreach($meta as $k=>$v) {
-                    $values[]=$k.'="'.$v.'"';
-                }
-                $HTML[]="<meta ".implode(' ',$values).">";
-            }
-        }
 
-        $HTML[]="<title>".$this->title."</title>";
-        $HTML[]="<meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>";
 
-        if($this->config->favicon && is_file($this->path.$this->config->favicon)){
-            $HTML[]='<link rel="shortcut icon" href="'.$this->path.$this->config->favicon.'">';    
-        }
-        
-        // Css
-        if(isset($this->config->css)){
-            foreach ($this->config->css as $v) {
-                if(preg_match("/^http/i",$v)){
-                    $HTML[]='<link href="'.$v.'" rel="stylesheet" type="text/css" />';    
-                }else{
-                    $HTML[]='<link href="'.$this->path.$v.'" rel="stylesheet" type="text/css" />';    
-                }            
-            }
-        }
-        $HTML[]="</head>";
-        return implode("\n", $HTML);
-    }
-
-    
     /**
      * GET/SET config meta's
      * @return [type] [description]
@@ -153,7 +126,75 @@ class AdminLte2
         return $this->config->meta;
     }
 
-    
+
+    /**
+     * head
+     * bring the headers, and initial assets
+     * @return [type] [description]
+     */
+    public function head()
+    {
+        $HTML = [];
+        $HTML[] = '<!DOCTYPE html>';
+        $HTML[] = '<html lang="' . $this->lang() . '">';
+        $HTML[] = '<head>';
+        $HTML[] = '<meta charset="UTF-8">';
+        $HTML[] = "<title>" . $this->title . "</title>";
+        if(isset($this->config->apple_app_icon)){
+            $HTML[] = '<link rel="apple-touch-icon" href="' . $this->path . $this->config->apple_app_icon . '">';
+        }
+
+        $HTML[] = "<meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>";
+        $HTML[] = '<meta name="apple-mobile-web-app-status-bar-style" content="black" />';
+        $HTML[] = '<meta name="apple-mobile-web-app-capable" content="yes" />';
+
+        if (isset($this->config->meta)&&is_array($this->config->meta)) {
+            foreach($this->config->meta as $meta){
+                $values=[];
+                foreach($meta as $k=>$v){
+                    $values[]=$k.'="'.$v.'"';
+                }
+                $HTML[]="<meta ".implode(' ',$values).">";
+            }
+        }
+
+        if($this->config->favicon && is_file($this->path.$this->config->favicon)){
+            $HTML[]='<link id="favicon" rel="shortcut icon" href="'.$this->path.$this->config->favicon.'">';
+        }
+
+        // Css
+        if(isset($this->config->css)){
+            foreach ($this->config->css as $v) {
+                if (preg_match("/^http/i",$v)) {
+                    $HTML[]='<link href="'.$v.'" rel="stylesheet" type="text/css" />';
+                } else {
+                    $HTML[]='<link href="'.$this->path.$v.'" rel="stylesheet" type="text/css" />';
+                }
+            }
+        }
+
+        // extra head //
+        if ($this->headHtml) {
+            $HTML[]=$this->headHtml;
+        }
+
+        $HTML[]="</head>";
+
+        return implode("\n", $HTML);
+    }
+
+
+    /**
+     * Get/Set extra html to <head> (apple links, tracking code, what you want)
+     * @return [type] [description]
+     */
+    public function headHtml($htm='')
+    {
+        $this->headHtml=$htm;
+        return $this->headHtml;
+    }
+
+
     /**
      * body
      * bring the headers, and initial assets
@@ -178,7 +219,7 @@ class AdminLte2
 
 
     /**
-     * header 
+     * header
      * this is NOT the html header, but the ADMIN header (top bar)
      * @return [type] [description]
      */
@@ -188,9 +229,9 @@ class AdminLte2
         //$HTML[]=__FUNCTION__."()";
 
         // header logo: style can be found in header.less -->
-        $HTML[]='<header class="main-header">';
+        //$HTML[]='<header class="main-header">';
 
-        
+
         $title="Admin";
         if (isset($this->config->title)) {
             $title=$this->config->title;
@@ -199,33 +240,108 @@ class AdminLte2
         //$HTML[]='<a href="?" class="logo">';
         if(isset($this->config->homeurl))$homeurl=$this->path.$this->config->homeurl;
         else $homeurl='#';
-        $HTML[]="<a href='$homeurl' class=logo>$title</a>";
+        //$HTML[]="<a href='$homeurl'>$title</a>";
+        //$HTML[]='<a class="navbar-brand" href="#">Navbar</a>';
         //$HTML[]='</a>';
-    
+
         // Header Navbar: style can be found in header.less -->
-        $HTML[]='<nav class="navbar navbar-static-top" role="navigation">';
-        
-        // Sidebar toggle button
+        //$HTML[]='<nav class="navbar navbar-static-top" role="navigation">';
+
+        // Sidebar toggle button //
+        /*
         $HTML[]='<a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">';
         $HTML[]='<span class="sr-only">Toggle navigation</span>';
         $HTML[]='</a>';
-    
-        // Navbar right menu    
+        */
+        /*
+        $HTML[]='<li class="nav-item" style="list-style: none;">';
+        $HTML[]='<button class="nav-link navbar-toggler sidebar-toggle hidden-md-down" data-toggle="offcanvas" ></button>';
+        $HTML[]='</li>';
+        */
+        /*
+        $HTML[]='<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">';
+        $HTML[]='<span class="navbar-toggler-icon"></span>';
+        $HTML[]='</button>';
+        */
+
+
+        // Navbar right menu
+        /*
         $HTML[]='<div class="navbar-custom-menu">';
         //$HTML[]='navbar-custom-menu';
         $HTML[]=$this->navbarCustomMenu;
         $HTML[]='</div>';
+        */
 
+        //$HTML[]='</nav>';
 
-        $HTML[]='</nav>';
-        $HTML[]='</header>';
+        $HTML[]=$this->newNav();
+        //$HTML[]='</header>';
 
         return implode("\n", $HTML);
     }
 
-    
+    private $user=[];
+    public function user($USR=[]){
+        $this->user=$USR;
+    }
+
+    private function newNav(){
+
+        if(isset($this->config->homeurl))$homeurl=$this->path.$this->config->homeurl;
+        else $homeurl='#';
+
+        $htm='<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">';
+
+        $htm.='<a class="navbar-brand" href="'.$homeurl.'" style="width:300px">'.$this->config()->title.'</a>';
+
+          //<!--nav-link navbar-toggler sidebar-toggle-->
+        $htm.='<button class="nav-link navbar-toggler sidebar-toggle" data-toggle="offcanvas" style="display:inline">';
+        $htm.='    <span class="navbar-toggler-icon"></span>';
+        $htm.='</button>';
+
+
+        $htm.='<div class="collapse navbar-collapse" id="navbarsExampleDefault">';
+
+        $htm.='<ul class="navbar-nav mr-auto">';
+          $htm.='<li class="nav-item">';
+            if($this->user)$htm.='<a class="nav-link disabled" href="#">'.$this->user['email'].'</a>';
+          $htm.='</li>';
+
+        $htm.='</ul>';
+
+        $htm.='<ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">';
+
+        if($this->user){
+            $htm.='<li class="nav-item dropdown">';
+            $htm.='<a class="nav-item nav-link dropdown-toggle mr-md-2" href="#" id="bd-versions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">';
+
+            //$htm.='User NAME';
+            $htm.=$this->user['first_name'].' '.$this->user['last_name'];
+
+            $htm.='</a>';
+            $htm.='<div class="dropdown-menu dropdown-menu-right" aria-labelledby="bd-versions">';
+                $htm.='<a class="dropdown-item" href="../home"><i class="fa fa-home"></i> Home</a>';
+                $htm.='<a class="dropdown-item" href="../userinfo"><i class="fa fa-edit"></i> Profile</a>';
+                $htm.='<a class="dropdown-item" href="../login/logout.php"><i class="fa fa-sign-out"></i> Log out</a>';
+            $htm.='</div>';
+            $htm.='</li>';
+        }
+
+
+        $htm.='</ul>';
+
+
+        $htm.='</div>';
+        $htm.='</nav>';
+        return $htm;
+    }
+
+
+
+
     /**
-     * Set top navbar html 
+     * Set top navbar html
      * Usefull for user messages
      * @param  string $htm [description]
      * @return [type]      [description]
@@ -266,13 +382,15 @@ class AdminLte2
     {
         $HTML=[];
         $HTML[]='<div class="wrapper row-offcanvas row-offcanvas-left">';
-        $HTML[]='<aside class="left-side sidebar-offcanvas">';
-        // sidebar: style can be found in sidebar.less -->       
+        //$HTML[]='<aside class="left-side sidebar-offcanvas">';//old
+        $HTML[]='<aside class="main-sidebar">';//new
+        // sidebar: style can be found in sidebar.less -->
         $HTML[]='<section class="sidebar">';
+
         // Sidebar user panel -->
-        $HTML[]='<div class="user-panel">';
         $HTML[]=$this->userPanel();
-        $HTML[]='</div>';
+
+
         // search field /
         if(isset($this->config->menusearch) && $this->config->menusearch){
             $HTML[]='<div class="sidebar-form input-group">';
@@ -286,6 +404,7 @@ class AdminLte2
         // sidebar menu: : style can be found in sidebar.less -->
         //$HTML[]= $this->menu();
         $HTML[]= $this->menu();
+
         $HTML[]='</section>';
         $HTML[]='</aside>';
         return implode("\n", $HTML);
@@ -296,20 +415,46 @@ class AdminLte2
      * Return left menu
      * @return string html
      */
-    public function menu($json = '')
-    {
-        
-        if(!isset($this->config->menu))return'';
-        if(!is_object($this->config->menu))return '';
+    public function menu($json = ''){
+
+        $menu=$this->config->menu;
+
+        if(!isset($menu)){
+            //throw new \Exception("Error : $this->config->menu must be a object", 1);
+            return '';
+        }
+
+        if(!is_object($this->config->menu))
+        {
+
+            if ($this->config->menu&&is_file(__DIR__.'/'.$this->config->menu)) {
+
+                $content=file_get_contents(__DIR__.'/'.$this->config->menu);
+                $this->config->menu=json_decode($content);
+
+                $err=json_last_error();
+
+                if($err){
+                    die("error $err".json_last_error_msg()."<br>$content");
+                    //throw new \Exception("JSON Error $err", 1);
+                }
+
+            } else {
+                die($this->config->menu . " not found");
+                return '';
+            }
+        }else{
+
+        }
 
         $HTML=[];
         $HTML[]='<ul class="sidebar-menu">';
-        
+
         foreach(@$this->config->menu as $name=>$o){
-            
+
             $title='';
             $class='';
-            
+
             if(!$o)continue;
             if(isset($o->class))$class='class="'.$o->class.'"';
             if(isset($o->title))$title='title="'.$o->title.'"';
@@ -325,25 +470,18 @@ class AdminLte2
                 $HTML[]='<ul class="treeview-menu">';
                 foreach($o->sub as $obj){
                     $HTML[]='<li>';
-                    if(isset($obj->url)){
-                        if(preg_match("/^(http|ftp)/",$obj->url)){
-                            $HTML[]="<a href='".$obj->url."'>";
-                        }else{
-                            $HTML[]="<a href='".$this->path.$obj->url."'>";
-                        }
-                    }
-                    
+                    if(isset($obj->url))$HTML[]="<a href='".$this->path.$obj->url."'>";
                     if(isset($obj->icon))$HTML[]="<i class='".$obj->icon."'></i> ";
                     $HTML[]='<span>'.$obj->text.'</span></a>';
                     $HTML[]='</li>';
                 }
                 $HTML[]='</ul>';
-                $HTML[]='</li>'; 
+                $HTML[]='</li>';
             }
             else
             {
                 $HTML[]='<li '.$class.' '.$title.'>';
-                if(isset($o->url))$HTML[]='<a href="'.$this->path.$o->url.'">';               
+                if(isset($o->url))$HTML[]='<a href="'.$this->path.$o->url.'">';
                 if(isset($o->icon))$HTML[]='<i class="'.$o->icon.'"></i> ';
                 $HTML[]='<span>'.@$o->text.'</span>';
                 //$HTML[]='<small class="label pull-right bg-green">new</small>';//small
@@ -352,7 +490,7 @@ class AdminLte2
             }
         }
         $HTML[]='</ul>';
-        return implode('', $HTML); 
+        return implode('', $HTML);
     }
 
     /**
@@ -374,20 +512,20 @@ class AdminLte2
             }
         }
         return implode("\n", $HTML);
-    }   
+    }
 
-    
-    
+
+
     private $footer;
+
     /**
      * Define footer. The footer is displayed only when "end()" is called
      * @param  string $body [description]
      * @return [type]       [description]
      */
-    public function footer($body='')
-    {
+    public function footer($body=''){
         if ($body) {
-            $HTML=[];    
+            $HTML=[];
             $HTML[]='<footer class="main-footer">';
             //$HTML[]='<div class="pull-right hidden-xs">';
             //$HTML[]='<b>Version</b> 2.3.0';

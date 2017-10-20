@@ -139,7 +139,7 @@ class Infobox
     public function html()
     {
         $HTML=[];
-        $HTML[]='<div class="'.$this->class.'">';
+        $HTML[]='<div class="'.$this->class.'" id="'.$this->id().'">';
         $HTML[]='<span class="info-box-icon bg-'.$this->color().'"><i class="'.$this->icon().'"></i></span>';
         
         $HTML[]='<div class="info-box-content">';

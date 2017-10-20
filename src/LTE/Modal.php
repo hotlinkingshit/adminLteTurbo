@@ -1,11 +1,13 @@
 <?php
 /**
- * AdminLte2 Modal
+ * AdminLte2 Modal V4
  * https://almsaeedstudio.com/themes/AdminLTE/pages/UI/modals.html
- * to pop the modal -> $("#modalwindow").modal('show');
+ * to pop the modal -> $("#modalwindow").modal(true);
  * to update the title -> $("#modalwindow .modal-title").html('html');
  * to update the body -> $("#modalwindow .modal-body").html('html');
- * to bind to 'shown' -> $('#myModal').on('shown.bs.modal',function(){});
+ *
+ * More here :
+ * https://v4-alpha.getbootstrap.com/components/modal/#optional-sizes
  */
 
 namespace LTE;
@@ -15,11 +17,9 @@ Class Modal
     private $id ='myModal';
     private $type ='default';
     private $icon ='fa fa-times';
-    private $title='';
-    private $body ='';
-    private $style ='';
-    private $width=0;
-    private $footer ='';
+    private $title='modal-title';
+    private $body ='modal-body';
+    private $footer ='<button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>';
 
     public function __construct ($title = '', $body = '', $footer='')
     {
@@ -33,22 +33,6 @@ Class Modal
           $this->id=$str;
         }
         return $this->id;
-    }
-
-    //ex : width:720px
-    public function style($str='')
-    {
-        if ($str) {
-          $this->style=$str;
-        }
-        return $this->style;
-    }
-
-    public function width($width=0){
-        if($width>0){
-            $this->width=$width;
-        }
-        return $this->width;
     }
 
     public function type($str = ''){
@@ -67,7 +51,6 @@ Class Modal
 
     public function body($str = ''){
         if ($str) {
-          if(is_array($str))$str=implode('',$str);
           $this->body=$str;
         }
         return $this->body;
@@ -75,7 +58,6 @@ Class Modal
 
     public function footer($str = ''){
         if ($str) {
-          if(is_array($str))$str=implode('',$str);
           $this->footer=$str;
         }
         return $this->footer;
@@ -93,31 +75,31 @@ Class Modal
         $HTML=[];
 
         $HTML[]='<div class="modal modal-'.$this->type().'" id="'.$this->id.'">';
-
-        if($this->style){
-            $htm[]='<div class="modal-dialog" style="'.$this->style.'">';
-        }else{
-            $htm[]='<div class="modal-dialog">';
-        }
-
         $HTML[]='<div class="modal-dialog">';
-
-        if ($this->width>0) {
-            $HTML[]='<div class="modal-content" style="width:'.$this->width.'px">';
-        } else {
-            $HTML[]='<div class="modal-content">';
-        }
+        $HTML[]='<div class="modal-content">';
 
         $HTML[]='<div class="modal-header">';
-        $HTML[]='<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>';
+
         $HTML[]='<h4 class="modal-title">';
         if($this->icon)$HTML[]='<i class="'.$this->icon().'"></i> ';
         $HTML[]=$this->title().'</h4>';
+
+        $HTML[]='<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>';
         $HTML[]='</div>';
 
         $HTML[]='<div class="modal-body">'.$this->body().'</div>';
 
-        $HTML[]='<div class="modal-footer">'.$this->footer().'</div>';
+        $HTML[]='<div class="modal-footer">';
+          //$HTML[]='<button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>';
+          //$HTML[]='<button type="button" class="btn btn-primary">Save changes</button>';
+
+        if (is_array($this->footer())) {
+            $HTML[]=implode('', $this->footer());
+        } else {
+            $HTML[]=$this->footer();
+        }
+
+        $HTML[]='</div>';
 
         $HTML[]='</div>';//<!-- /.modal-content -->
         $HTML[]='</div>';//<!-- /.modal-dialog -->
