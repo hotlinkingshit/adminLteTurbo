@@ -1,0 +1,92 @@
+{
+
+	"header":{
+   		"text":"Menu",
+   		"class":"header"
+   },
+
+   "home":{
+      "text":"Home",
+      "title":"Sweet home",
+      "icon":"fa fa-home",
+      "url":"index.php"
+   },
+
+   "examples":{
+      "text":"Examples",
+      "icon":"fa fa-users",
+      "sub":[{
+		"text":"Login page",
+      	"icon":"fa fa-sign-in",
+      	"url":"./login"
+      },{
+		"text":"Menu",
+      	"icon":"fa fa-list",
+      	"url":"examples/menu.php"
+      },{
+		"text":"Boxes",
+      	"icon":"fa fa-list-alt",
+      	"url":"examples/boxes.php"
+      },{
+		"text":"Alerts",
+      	"icon":"fa fa-warning",
+      	"url":"examples/alerts.php"
+      },{
+		"text":"Modals",
+      	"icon":"fa fa-exclamation-circle",
+      	"url":"examples/modals.php"
+      },{
+      	"text":"Widgets",
+      	"icon":"fa fa-home",
+      	"url":"examples/widgets.php"
+      },{
+      	"text":"Timeline",
+      	"icon":"fa fa-clock-o",
+      	"url":"examples/timeline.php"
+      },{
+      	"text":"Icons",
+      	"icon":"fa fa-flag",
+      	"url":"examples/icons.php"
+      }
+
+      ]
+   },
+	"links":
+	{
+		"text":"links",
+		"icon":"fa fa-external-link",
+		"sub":[{
+			"text":"jambonbill.org",
+			"icon":"fa fa-external-link",
+			"url":"http://www.jambonbill.org",
+			"target":"_blank"
+			},{
+			"text":"Github",
+			"icon":"fa fa-external-link",
+			"url":"https://github.com/jambonbill/adminLteTurbo",
+			"target":"_blank"
+			},{
+			"text":"Bootstrap",
+			"icon":"fa fa-external-link",
+			"url":"http://getbootstrap.com/",
+			"target":"_blank"
+			},{
+			"text":"AdminLTE",
+			"icon":"fa fa-external-link",
+			"title":"It's a surprise !",
+			"icon":"fa fa-youtube-play",
+			"url":"https://almsaeedstudio.com/",
+			"target":"_blank"
+		}]
+	},
+	"separator":{
+   		"text":"Separator",
+   		"class":"header"
+   },
+   "logout":{
+      "text":"Logout",
+      "id":"btn_logout",
+      "icon":"fa fa-sign-out",
+      "url":"login/logout.php"
+   }
+}
