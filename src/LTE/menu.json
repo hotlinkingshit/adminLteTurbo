@@ -60,17 +60,17 @@
 			"icon":"fa fa-external-link",
 			"url":"http://www.jambonbill.org",
 			"target":"_blank"
-			},{
+		},{
 			"text":"Github",
 			"icon":"fa fa-external-link",
 			"url":"https://github.com/jambonbill/adminLteTurbo",
 			"target":"_blank"
-			},{
+		},{
 			"text":"Bootstrap",
 			"icon":"fa fa-external-link",
 			"url":"http://getbootstrap.com/",
 			"target":"_blank"
-			},{
+		},{
 			"text":"AdminLTE",
 			"icon":"fa fa-external-link",
 			"title":"It's a surprise !",
@@ -80,7 +80,6 @@
 		}]
 	},
 	"separator":{
-   		"text":"Separator",
    		"class":"header"
    },
    "logout":{
