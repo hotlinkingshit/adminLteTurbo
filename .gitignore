@@ -1,3 +1,11 @@
-composer.lock
-config.json
+/composer.lock
+
+# Vendor folder
 vendor/
+
+
+profiles/*.json
+
+cli/*.json
+
+config.json
