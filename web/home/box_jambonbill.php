@@ -9,6 +9,7 @@ $box->type("danger");
 $box->title('Bill say "Hello"');
 $box->style("danger");
 $box->body($htm);
+$box->removable(1);
 
 //$box->footer($btns);
 echo $box;

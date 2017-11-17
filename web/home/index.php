@@ -16,14 +16,15 @@ echo $admin;//
 <section class="content">
   <h1>Hi</h1>
   <div class="row">
-    <div class="col-md-6 col-sm-6 col-xs-12" >
+    <div class="col-5" >
     <?php
     include "box_jambonbill.php";
+    include "box_pdo.php";
 
     ?>
     </div><!-- /.col -->
 
-    <div class="col-md-6 col-sm-6 col-xs-12">
+    <div class="col-7">
     <?php
     include "box_about.php";
     //include "box_getStarted.php";

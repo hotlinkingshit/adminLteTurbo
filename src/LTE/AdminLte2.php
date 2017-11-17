@@ -1,8 +1,7 @@
 <?php
 /**
  * This is a php class version of AdminLTE2 for quick integration
- * no hard coded path, no db dependency, or session tricks
- * configuration done through json
+ * configuration done through file : config.json
  * @author jambonbill
  */
 namespace LTE;
