@@ -20,7 +20,7 @@
 		}
 	],
 	"css":[
-		"bootstrap/css/bootstrap.min.css",
+		"dist/bootstrap/css/bootstrap.min.css",
     	"dist/css/font-awesome/4.3.0/font-awesome.min.css",
 	    "dist/css/ionicons/2.0.0/ionicons.min.css",
     	"dist/css/AdminLTE.css",
@@ -29,7 +29,7 @@
 	"js":[
 	    "dist/plugins/jQuery/jquery-3.2.1.min.js",
 	    "dist/plugins/popper.js/popper.min.js",
-    	"bootstrap/js/bootstrap.min.js",
+    	"dist/bootstrap/js/bootstrap.min.js",
     	"dist/js/app.min.js"
 	],
 	"layout":{
